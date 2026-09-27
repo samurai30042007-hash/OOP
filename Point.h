@@ -2,10 +2,10 @@ class Point
 {
 
 public:
-    Point() : _x(0), _y(0) {
-                  std::cout << "Point created (0, 0).
-                               " << std::endl;
-              };
+    Point() : _x(0), _y(0)
+    {
+        std::cout << "Point created (0, 0)." << std::endl;
+    };
     Point(int x, int y) : _x(x), _y(y)
     {
         std::cout << "Point created (" << x << ", " << y << ")." << std::endl;
