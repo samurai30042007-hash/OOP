@@ -1,3 +1,5 @@
+#pragma once
+#include <iostream>
 class Point
 {
 
@@ -51,10 +53,11 @@ public:
         std::cout << "Point destroyed (" << _x << ", " << _y << ")." << std::endl;
     };
 
-private:
+protected:
     int _x;
     int _y;
 };
+
 void Point::move(int dx, int dy)
 {
     _x += dx;
