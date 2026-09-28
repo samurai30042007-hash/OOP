@@ -45,4 +45,20 @@ public:
         cp1.print();
         std::cout << "Radius: " << cp1.getRadius() << std::endl;
     }
+    void ShowBlock4()
+    {
+        Point p1 = Point(3, 4);
+        Point p2 = p1;
+        p2.setX(10);
+        p2.setY(20);
+        p1.print();
+        p2.print();
+        Point *p3 = new Point(5, 6);
+        Point *p4 = p3;
+        p4->setX(30);
+        p4->setY(40);
+        p3->print();
+        p4->print();
+        delete p3;
+    }
 };

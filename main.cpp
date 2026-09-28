@@ -6,5 +6,6 @@ int main()
     show.showBlock1();
     show.showBlock2();
     show.ShowBlock3();
+    show.ShowBlock4();
     return 0;
 }
