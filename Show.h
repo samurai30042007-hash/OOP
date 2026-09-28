@@ -61,4 +61,13 @@ public:
         p4->print();
         delete p3;
     }
+    void ShowBlock5()
+    {
+        Point *p1 = new ColoredPoint(3, 4, "red");
+        p1->print();
+        ((ColoredPoint *)p1)->print();
+        delete p1;
+        Point p2 = ColoredPoint(5, 6, "blue");
+        p2.print();
+    }
 };
