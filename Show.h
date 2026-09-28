@@ -2,6 +2,7 @@
 #include <iostream>
 #include "Point.h"
 #include "ColoredPoint.h"
+#include "Circle.h"
 
 class Show
 {
@@ -29,5 +30,19 @@ public:
         cp4->move(1, 1);
         cp4->print();
         delete cp4;
+    }
+    void ShowBlock3()
+    {
+        Circle c1 = Circle(5, Point(2, 3));
+        Circle c2 = Circle();
+        {
+            Circle c3 = Circle(c1.getRadius(), c1.getCenter());
+        }
+        CirclePtr cp1 = CirclePtr(10, Point(4, 5));
+        cp1.print();
+        cp1.setRadius(15);
+        cp1.moveCenter(2, 3);
+        cp1.print();
+        std::cout << "Radius: " << cp1.getRadius() << std::endl;
     }
 };
