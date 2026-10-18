@@ -12,7 +12,7 @@ public:
     {
         _color = color;
     }
-    ColoredPoint() : Point(), _color("black")
+    ColoredPoint() : _color("black")
     {
         std::cout << "ColoredPoint created (0, 0, black)." << std::endl;
     }

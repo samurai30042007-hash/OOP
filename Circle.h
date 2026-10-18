@@ -5,7 +5,7 @@
 class Circle
 {
 public:
-    Circle() : _radius(0), _center(Point())
+    Circle() : _radius(0), _center()
     {
         std::cout << "Circle created with radius 0 at center (0, 0)." << std::endl;
     }
