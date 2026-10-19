@@ -15,7 +15,7 @@ namespace laba_3._1
                 bool isCircleFound = _storage.SelectCircle(e.X, e.Y, Control.ModifierKeys == Keys.Control);
                 if (!isCircleFound)
                 {
-                    _storage.AddCircle(10, e.X, e.Y);
+                    _storage.AddCircle(50, e.X, e.Y);
                 }
             }
             Invalidate();
@@ -24,11 +24,12 @@ namespace laba_3._1
 
         private void Form1_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyValue == 46) // Delete key
+            if (e.KeyCode == Keys.Delete) 
             {
                 _storage.RemoveSelectedCircles();
+                Invalidate();
             }
-            Invalidate();
+            
         }
 
         private void Form1_Paint(object sender, PaintEventArgs e)

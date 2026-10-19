@@ -29,11 +29,13 @@ namespace laba_3._1
                     circle.ChangeSelect(false);
                 }
             }
-            foreach (var circle in _circles)
+            for (int i = _circles.Count - 1; i >= 0; i--)
             {
-                isCircleFound = circle.IsInside(x, y);
-                if (isCircleFound)
+                var circle = _circles[i];
+
+                if (circle.IsInside(x, y))
                 {
+                    isCircleFound = true;
                     circle.ChangeSelect();
                     break;
                 }
