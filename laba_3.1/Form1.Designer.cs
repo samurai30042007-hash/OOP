@@ -28,10 +28,19 @@
         /// </summary>
         private void InitializeComponent()
         {
-            components = new System.ComponentModel.Container();
+            SuspendLayout();
+            // 
+            // Form1
+            // 
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Name = "Form1";
             Text = "Form1";
+            Paint += Form1_Paint;
+            KeyDown += Form1_KeyDown;
+            MouseDown += Form1_MouseDown;
+            ResumeLayout(false);
         }
 
         #endregion

@@ -42,7 +42,29 @@ namespace laba_3._1
             double distance = Math.Sqrt(Math.Pow(x - PosX, 2) + Math.Pow(y - PosY, 2));
             return distance <= Radius;
         }
-
+        public void Draw(Graphics graphics)
+        {
+            if (IsSelect)
+            {
+                graphics.DrawEllipse(
+                Pens.Blue,
+                PosX - Radius,
+                PosY - Radius,
+                Radius * 2,
+                Radius * 2
+            );
+            }
+            else
+            {
+                graphics.DrawEllipse(
+                    Pens.Black,
+                    PosX - Radius,
+                    PosY - Radius,
+                    Radius * 2,
+                    Radius * 2
+                );
+            }
+        }
 
         private int _radius;
 

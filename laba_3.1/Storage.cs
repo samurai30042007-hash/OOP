@@ -21,7 +21,7 @@ namespace laba_3._1
         }
         public bool SelectCircle(int x, int y, bool isPressCtrl)
         {
-            bool IsSelect = false;
+            bool isCircleFound = false;
             if (!isPressCtrl)
             {
                 foreach (var circle in _circles)
@@ -31,20 +31,26 @@ namespace laba_3._1
             }
             foreach (var circle in _circles)
             {
-                IsSelect = circle.IsInside(x, y);
-                if (IsSelect)
+                isCircleFound = circle.IsInside(x, y);
+                if (isCircleFound)
                 {
                     circle.ChangeSelect();
                     break;
                 }
             }
-            return IsSelect;
+            return isCircleFound;
         }
         public void RemoveSelectedCircles()
         {
             _circles.RemoveAll(circle => circle.IsSelect);
         }
-
+        public void DrawAll(Graphics graphics)
+        {
+            foreach (var circle in _circles)
+            {
+                circle.Draw(graphics);
+            }
+        }
 
         private List<Circle> _circles;
     }
