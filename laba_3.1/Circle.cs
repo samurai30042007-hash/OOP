@@ -8,10 +8,19 @@ namespace laba_3._1
     {
         public int PosX { get; private set; }
         public int PosY { get; private set; }
-        public int Radius { get; private set; }
-
         public bool IsSelect { get; private set; } = false;
-
+        public int Radius
+        {
+            get { return _radius; }
+            private set
+            {
+                if (value < 0)
+                {
+                    throw new ArgumentException("Radius cannot be negative.");
+                }
+                _radius = value;
+            }
+        }
         public Circle(int x, int y, int radius)
         {
             PosX = x;
@@ -23,7 +32,19 @@ namespace laba_3._1
         {
             IsSelect = !IsSelect;
         }
+        public void ChangeSelect(bool isSelect)
+        {
+            IsSelect = isSelect;
+        }
 
+        public bool IsInside(int x, int y)
+        {
+            double distance = Math.Sqrt(Math.Pow(x - PosX, 2) + Math.Pow(y - PosY, 2));
+            return distance <= Radius;
+        }
+
+
+        private int _radius;
 
     }
 }
