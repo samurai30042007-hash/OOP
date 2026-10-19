@@ -67,3 +67,41 @@ vcpkg_installed/
 # test output & cache
 Testing/
 .cache/
+
+
+
+
+## Visual Studio служебные файлы (из-за них была ошибка)
+.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+## Папки компиляции (результаты сборки проекта)
+[Bb]in/
+[Oo]bj/
+
+## NuGet пакеты
+packages/
+*.nuget.props
+*.nuget.targets
+
+## Логи и отчеты тестирования
+*.log
+*.trx
+*.md.html
+
+## Средства разработки JetBrains (Rider, ReSharper)
+.idea/
+*.sln.DotSettings.user
+
+## Специфичные папки VS Code
+.vscode/tasks.json
+.vscode/launch.json
+.vscode/extensions.json
+!.vscode/settings.json
+
+## Системные файлы
+Thumbs.db
+.DS_Store
