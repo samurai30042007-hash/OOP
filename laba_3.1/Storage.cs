@@ -31,7 +31,7 @@ namespace laba_3._1
             }
             for (int i = _circles.Count - 1; i >= 0; i--)
             {
-                var circle = _circles[i];
+                var circle = _circles[i]
 
                 if (circle.IsInside(x, y))
                 {
