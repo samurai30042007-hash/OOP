@@ -132,4 +132,45 @@ namespace laba_3._1
             }
         }
     }   
+    public class Triangle : Shape
+    {
+        public Point Point1 { get; private set; }
+        public Point Point2 { get; private set; }
+        public Point Point3 { get; private set; }
+        public Triangle(Point point1, Point point2, Point point3)
+        {
+            Point1 = point1;
+            Point2 = point2;
+            Point3 = point3;
+        }
+        public Triangle(Triangle triangle)
+        {
+            Point1 = triangle.Point1;
+            Point2 = triangle.Point2;
+            Point3 = triangle.Point3;
+            IsSelect = triangle.IsSelect;
+        }
+        public override void ChangeSelect()
+        {
+            IsSelect = !IsSelect;
+        }
+        public override void ChangeSelect(bool isSelect)
+        {
+            IsSelect = isSelect;
+        }
+        public override bool IsInside(int x, int y)
+        {
+            // Use barycentric coordinates to check if the point is inside the triangle
+            float denominator = ((Point2.Y - Point3.Y) * (Point1.X - Point3.X) + (Point3.X - Point2.X) * (Point1.Y - Point3.Y));
+            float a = ((Point2.Y - Point3.Y) * (x - Point3.X) + (Point3.X - Point2.X) * (y - Point3.Y)) / denominator;
+            float b = ((Point3.Y - Point1.Y) * (x - Point3.X) + (Point1.X - Point3.X) * (y - Point3.Y)) / denominator;
+            float c = 1 - a - b;
+            return a >= 0 && b >= 0 && c >= 0;
+        }
+        public override void Draw(Graphics graphics)
+        {
+            Pen pen = IsSelect ? Pens.Blue : Pens.Black;
+            graphics.DrawPolygon(pen, new[] { Point1, Point2, Point3 });
+        }
+    }
 }
