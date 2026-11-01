@@ -53,7 +53,16 @@ namespace laba_3._1
                 shape.Draw(graphics);
             }
         }
-
+        public void MoveSelectedShapes(int dx, int dy)
+        {
+            foreach (var shape in _shapes)
+            {
+                if (shape.IsSelect)
+                {
+                    shape.Move(dx, dy);
+                }
+            }
+        }
         private List<Shape> _shapes;
     }
 }

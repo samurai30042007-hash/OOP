@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Drawing.Text;
 
 namespace laba_3._1
 {
     public class Circle : Shape
     {
-        public int PosX { get; private set; }
-        public int PosY { get; private set; }
+        private int _radius;
         public int Radius
         {
             get { return _radius; }
@@ -26,7 +23,7 @@ namespace laba_3._1
             PosY = y;
             Radius = radius;
         }
-        public Circle (Circle circle)
+        public Circle(Circle circle)
         {
             PosX = circle.PosX;
             PosY = circle.PosY;
@@ -61,19 +58,12 @@ namespace laba_3._1
                 );
             }
         }
-        public override void Move(int dx, int dy)
-        {
-            PosX += dx;
-            PosY += dy;
-        }
 
-        private int _radius;
+
 
     }
     public class Rectangle : Shape
     {
-        public int PosX { get; private set; }
-        public int PosY { get; private set; }
         public int Width { get; private set; }
         public int Height { get; private set; }
         public Rectangle(int x, int y, int width, int height)
@@ -118,49 +108,68 @@ namespace laba_3._1
                 );
             }
         }
-        public override void Move(int dx, int dy)
-        {
-            PosX += dx;
-            PosY += dy;
-        }
-    }   
-    public class Triangle : Shape
+
+    }
+
+public class Triangle : Shape
     {
-        public Point Point1 { get; private set; }
-        public Point Point2 { get; private set; }
-        public Point Point3 { get; private set; }
-        public Triangle(Point point1, Point point2, Point point3)
+        private int lenght;
+
+        public Triangle(int x, int y, int length)
         {
-            Point1 = point1;
-            Point2 = point2;
-            Point3 = point3;
+            PosX = x;
+            PosY = y;
+            lenght = length;
         }
+
         public Triangle(Triangle triangle)
         {
-            Point1 = triangle.Point1;
-            Point2 = triangle.Point2;
-            Point3 = triangle.Point3;
+            PosX = triangle.PosX;
+            PosY = triangle.PosY;
+            lenght = triangle.lenght;
             IsSelect = triangle.IsSelect;
         }
+
+        private PointF[] GetVertices()
+        {
+            float height = (float)(lenght * Math.Sqrt(3) / 2);
+
+            PointF[] points = new PointF[3];
+            points[0] = new PointF(PosX, PosY);
+            points[1] = new PointF(PosX - lenght / 2f, PosY + height);
+            points[2] = new PointF(PosX + lenght / 2f, PosY + height);
+
+            return points;
+        }
+
         public override bool IsInside(int x, int y)
         {
-            // Use barycentric coordinates to check if the point is inside the triangle
-            float denominator = ((Point2.Y - Point3.Y) * (Point1.X - Point3.X) + (Point3.X - Point2.X) * (Point1.Y - Point3.Y));
-            float a = ((Point2.Y - Point3.Y) * (x - Point3.X) + (Point3.X - Point2.X) * (y - Point3.Y)) / denominator;
-            float b = ((Point3.Y - Point1.Y) * (x - Point3.X) + (Point1.X - Point3.X) * (y - Point3.Y)) / denominator;
-            float c = 1 - a - b;
-            return a >= 0 && b >= 0 && c >= 0;
+            PointF[] vertices = GetVertices();
+            PointF A = vertices[0];
+            PointF B = vertices[1];
+            PointF C = vertices[2];
+
+            double d1 = Sign(x, y, A.X, A.Y, B.X, B.Y);
+            double d2 = Sign(x, y, B.X, B.Y, C.X, C.Y);
+            double d3 = Sign(x, y, C.X, C.Y, A.X, A.Y);
+
+            bool has_neg = (d1 < 0) || (d2 < 0) || (d3 < 0);
+            bool has_pos = (d1 > 0) || (d2 > 0) || (d3 > 0);
+
+            return !(has_neg && has_pos);
         }
+
+        private double Sign(double x1, double y1, double x2, double y2, double x3, double y3)
+        {
+            return (x1 - x3) * (y2 - y3) - (x2 - x3) * (y1 - y3);
+        }
+
         public override void Draw(Graphics graphics)
         {
             Pen pen = IsSelect ? Pens.Blue : Pens.Black;
-            graphics.DrawPolygon(pen, new[] { Point1, Point2, Point3 });
-        }
-        public override void Move(int dx, int dy)
-        {
-            Point1 = new Point(Point1.X + dx, Point1.Y + dy);
-            Point2 = new Point(Point2.X + dx, Point2.Y + dy);
-            Point3 = new Point(Point3.X + dx, Point3.Y + dy);
+            PointF[] vertices = GetVertices();
+            graphics.DrawPolygon(pen, vertices);
         }
     }
+
 }

@@ -7,6 +7,8 @@ namespace laba_3._1
     public abstract class Shape
     {
         public bool IsSelect { get; protected set; }
+        protected int PosX;
+        protected int PosY;
         virtual public void ChangeSelect(bool isSelect)
         {
             IsSelect = isSelect;
@@ -17,9 +19,10 @@ namespace laba_3._1
         }
         abstract public bool IsInside(int x, int y);
         abstract public void Draw(Graphics graphics);
-        abstract public void Move (int dx, int dy);
-
-
-
+        virtual public void Move (int dx, int dy)
+        {
+            PosX += dx;
+            PosY += dy;
+        }
     }
 }
