@@ -31,18 +31,21 @@
             label1 = new Label();
             textBox1 = new TextBox();
             trackBar1 = new TrackBar();
-            domainUpDown1 = new DomainUpDown();
-            domainUpDown2 = new DomainUpDown();
             trackBar2 = new TrackBar();
             textBox2 = new TextBox();
-            domainUpDown3 = new DomainUpDown();
             trackBar3 = new TrackBar();
             textBox3 = new TextBox();
             Save = new Button();
             Load = new Button();
+            numericUpDown1 = new NumericUpDown();
+            numericUpDown2 = new NumericUpDown();
+            numericUpDown3 = new NumericUpDown();
             ((System.ComponentModel.ISupportInitialize)trackBar1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)trackBar2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)trackBar3).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)numericUpDown1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)numericUpDown2).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)numericUpDown3).BeginInit();
             SuspendLayout();
             // 
             // label1
@@ -69,22 +72,6 @@
             trackBar1.Size = new Size(130, 56);
             trackBar1.TabIndex = 2;
             // 
-            // domainUpDown1
-            // 
-            domainUpDown1.Location = new Point(84, 284);
-            domainUpDown1.Name = "domainUpDown1";
-            domainUpDown1.Size = new Size(150, 27);
-            domainUpDown1.TabIndex = 3;
-            domainUpDown1.Text = "domainUpDown1";
-            // 
-            // domainUpDown2
-            // 
-            domainUpDown2.Location = new Point(327, 284);
-            domainUpDown2.Name = "domainUpDown2";
-            domainUpDown2.Size = new Size(150, 27);
-            domainUpDown2.TabIndex = 6;
-            domainUpDown2.Text = "domainUpDown2";
-            // 
             // trackBar2
             // 
             trackBar2.Location = new Point(327, 352);
@@ -98,14 +85,6 @@
             textBox2.Name = "textBox2";
             textBox2.Size = new Size(125, 27);
             textBox2.TabIndex = 4;
-            // 
-            // domainUpDown3
-            // 
-            domainUpDown3.Location = new Point(568, 284);
-            domainUpDown3.Name = "domainUpDown3";
-            domainUpDown3.Size = new Size(150, 27);
-            domainUpDown3.TabIndex = 9;
-            domainUpDown3.Text = "domainUpDown3";
             // 
             // trackBar3
             // 
@@ -141,20 +120,41 @@
             Load.UseVisualStyleBackColor = true;
             Load.Click += Load_Click;
             // 
+            // numericUpDown1
+            // 
+            numericUpDown1.Location = new Point(84, 282);
+            numericUpDown1.Name = "numericUpDown1";
+            numericUpDown1.Size = new Size(150, 27);
+            numericUpDown1.TabIndex = 12;
+            // 
+            // numericUpDown2
+            // 
+            numericUpDown2.Location = new Point(327, 282);
+            numericUpDown2.Name = "numericUpDown2";
+            numericUpDown2.Size = new Size(150, 27);
+            numericUpDown2.TabIndex = 13;
+            // 
+            // numericUpDown3
+            // 
+            numericUpDown3.Location = new Point(568, 282);
+            numericUpDown3.Name = "numericUpDown3";
+            numericUpDown3.Size = new Size(150, 27);
+            numericUpDown3.TabIndex = 14;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(958, 470);
+            Controls.Add(numericUpDown3);
+            Controls.Add(numericUpDown2);
+            Controls.Add(numericUpDown1);
             Controls.Add(Load);
             Controls.Add(Save);
-            Controls.Add(domainUpDown3);
             Controls.Add(trackBar3);
             Controls.Add(textBox3);
-            Controls.Add(domainUpDown2);
             Controls.Add(trackBar2);
             Controls.Add(textBox2);
-            Controls.Add(domainUpDown1);
             Controls.Add(trackBar1);
             Controls.Add(textBox1);
             Controls.Add(label1);
@@ -163,6 +163,9 @@
             ((System.ComponentModel.ISupportInitialize)trackBar1).EndInit();
             ((System.ComponentModel.ISupportInitialize)trackBar2).EndInit();
             ((System.ComponentModel.ISupportInitialize)trackBar3).EndInit();
+            ((System.ComponentModel.ISupportInitialize)numericUpDown1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)numericUpDown2).EndInit();
+            ((System.ComponentModel.ISupportInitialize)numericUpDown3).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -172,14 +175,14 @@
         private Label label1;
         private TextBox textBox1;
         private TrackBar trackBar1;
-        private DomainUpDown domainUpDown1;
-        private DomainUpDown domainUpDown2;
         private TrackBar trackBar2;
         private TextBox textBox2;
-        private DomainUpDown domainUpDown3;
         private TrackBar trackBar3;
         private TextBox textBox3;
         private Button Save;
         private Button Load;
+        private NumericUpDown numericUpDown1;
+        private NumericUpDown numericUpDown2;
+        private NumericUpDown numericUpDown3;
     }
 }

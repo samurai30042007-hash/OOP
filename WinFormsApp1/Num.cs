@@ -111,8 +111,8 @@
                 _numB = b;
                 _numC = c;
             }
-            throw new InvalidDataException("Data file is corrupted or contains invalid values.");
-
+            else
+               throw new InvalidDataException("Data file is corrupted or contains invalid values.");
         }
         public async Task SaveData()
         {

@@ -3,18 +3,36 @@ namespace WinFormsApp1
     public partial class Form1 : Form
     {
         private readonly Num _numbers = new();
-        private bool _isUpdatingView = false;
+        
 
         public Form1()
         {
             InitializeComponent();
+            _numbers.NumChanged += Model_NumChanged;
+            trackBar1.Minimum = Num.MinValue;
+            trackBar1.Maximum = Num.MaxValue;
+            trackBar2.Minimum = Num.MinValue;
+            trackBar2.Maximum = Num.MaxValue;
+            trackBar3.Minimum = Num.MinValue;
+            trackBar3.Maximum = Num.MaxValue;
         }
 
         private void Model_NumChanged(object? sender, EventArgs e)
         {
-            //UpdateView();
+            UpdateView();
         }
-
+        private void UpdateView()
+        {
+            numericUpDown3.Value = _numbers.NumC;
+            textBox3.Text = _numbers.NumC.ToString();
+            trackBar3.Value = _numbers.NumC;
+            textBox2.Text = _numbers.NumB.ToString();
+            trackBar2.Value = _numbers.NumB;
+            numericUpDown2.Value = _numbers.NumB;
+            textBox1.Text = _numbers.NumA.ToString();
+            trackBar1.Value = _numbers.NumA;
+            numericUpDown1.Value = _numbers.NumA;
+        }
         private async void Save_Click(object sender, EventArgs e)
         {
                await _numbers.SaveData();
