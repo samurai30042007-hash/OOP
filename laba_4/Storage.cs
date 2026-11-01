@@ -57,10 +57,7 @@ namespace laba_3._1
         {
             foreach (var shape in _shapes)
             {
-                if (shape.IsSelect)
-                {
                     shape.Move(dx, dy);
-                }
             }
         }
         private List<Shape> _shapes;

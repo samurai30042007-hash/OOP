@@ -21,8 +21,12 @@ namespace laba_3._1
         abstract public void Draw(Graphics graphics);
         virtual public void Move (int dx, int dy)
         {
-            PosX += dx;
-            PosY += dy;
+            if (IsSelect)
+            {
+                PosX += dx;
+                PosY += dy;
+            }
+           
         }
     }
 }
