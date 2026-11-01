@@ -36,10 +36,11 @@
             trackBar3 = new TrackBar();
             textBox3 = new TextBox();
             Save = new Button();
-            Load = new Button();
+            LoadButton = new Button();
             numericUpDown1 = new NumericUpDown();
             numericUpDown2 = new NumericUpDown();
             numericUpDown3 = new NumericUpDown();
+            label2 = new Label();
             ((System.ComponentModel.ISupportInitialize)trackBar1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)trackBar2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)trackBar3).BeginInit();
@@ -116,15 +117,15 @@
             Save.UseVisualStyleBackColor = true;
             Save.Click += Save_Click;
             // 
-            // Load
+            // LoadButton
             // 
-            Load.Location = new Point(794, 167);
-            Load.Name = "Load";
-            Load.Size = new Size(94, 29);
-            Load.TabIndex = 11;
-            Load.Text = "Загрузить";
-            Load.UseVisualStyleBackColor = true;
-            Load.Click += Load_Click;
+            LoadButton.Location = new Point(794, 167);
+            LoadButton.Name = "LoadButton";
+            LoadButton.Size = new Size(94, 29);
+            LoadButton.TabIndex = 11;
+            LoadButton.Text = "Загрузить";
+            LoadButton.UseVisualStyleBackColor = true;
+            LoadButton.Click += Load_Click;
             // 
             // numericUpDown1
             // 
@@ -150,15 +151,25 @@
             numericUpDown3.TabIndex = 14;
             numericUpDown3.ValueChanged += numericUpDown_ValueChanged;
             // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(802, 245);
+            label2.Name = "label2";
+            label2.Size = new Size(50, 20);
+            label2.TabIndex = 15;
+            label2.Text = "label2";
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(958, 470);
+            Controls.Add(label2);
             Controls.Add(numericUpDown3);
             Controls.Add(numericUpDown2);
             Controls.Add(numericUpDown1);
-            Controls.Add(Load);
+            Controls.Add(LoadButton);
             Controls.Add(Save);
             Controls.Add(trackBar3);
             Controls.Add(textBox3);
@@ -169,6 +180,8 @@
             Controls.Add(label1);
             Name = "Form1";
             Text = "Form1";
+            FormClosing += Form1_FormClosing;
+            Load += Form1_Load;
             ((System.ComponentModel.ISupportInitialize)trackBar1).EndInit();
             ((System.ComponentModel.ISupportInitialize)trackBar2).EndInit();
             ((System.ComponentModel.ISupportInitialize)trackBar3).EndInit();
@@ -189,9 +202,10 @@
         private TrackBar trackBar3;
         private TextBox textBox3;
         private Button Save;
-        private Button Load;
+        private Button LoadButton;
         private NumericUpDown numericUpDown1;
         private NumericUpDown numericUpDown2;
         private NumericUpDown numericUpDown3;
+        private Label label2;
     }
 }

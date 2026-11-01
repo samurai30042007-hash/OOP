@@ -4,6 +4,7 @@ namespace WinFormsApp1
     {
         private readonly Num _numbers = new();
         private bool isUpdating = false;
+        private int counter = 0;
 
 
         public Form1()
@@ -31,12 +32,12 @@ namespace WinFormsApp1
             }
             finally
             {
-                UpdateView();
                 isUpdating = false;
             }
         }
         private void UpdateView()
         {
+            label2.Text = $"Counter: {++counter}";
             numericUpDown3.Value = _numbers.NumC;
             textBox3.Text = _numbers.NumC.ToString();
             trackBar3.Value = _numbers.NumC;
@@ -78,7 +79,6 @@ namespace WinFormsApp1
             catch (ArgumentException ex)
             {
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                UpdateView();
             }
         }
         private void numericUpDown_ValueChanged(object sender, EventArgs e)
@@ -111,7 +111,6 @@ namespace WinFormsApp1
             catch (ArgumentException ex)
             {
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                UpdateView();
             }
         }
         private void textBox_Leave(object sender, EventArgs e)
@@ -131,13 +130,14 @@ namespace WinFormsApp1
                 return;
             }
             try
-            {switch (textBox.Name)
+            {
+                switch (textBox.Name)
                 {
                     case "textBox1":
                         _numbers.NumA = value;
                         break;
                     case "textBox2":
-                            _numbers.NumB = value;
+                        _numbers.NumB = value;
                         break;
                     case "textBox3":
                         _numbers.NumC = value;
@@ -149,14 +149,14 @@ namespace WinFormsApp1
             catch (ArgumentException ex)
             {
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                UpdateView();
             }
         }
         private async void Save_Click(object sender, EventArgs e)
         {
             await _numbers.SaveData();
-        }
+            UpdateView();
 
+        }
         private async void Load_Click(object sender, EventArgs e)
         {
             try
@@ -180,6 +180,38 @@ namespace WinFormsApp1
             {
                 MessageBox.Show($"An error occurred while loading data: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+        private async void Form1_Load(object sender, EventArgs e)
+        {
+            
+            try
+            {
+                await _numbers.LoadData();
+            }
+            catch (InvalidOperationException)
+            {
+                MessageBox.Show("Data file is empty.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (FileNotFoundException)
+            {
+                MessageBox.Show("Data file not found.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (InvalidDataException)
+            {
+                MessageBox.Show("Data file is corrupted or contains invalid values.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An error occurred while loading data: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                UpdateView();
+            }
+        }
+        private  void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            _numbers.SaveData().Wait(); // Что за Wait()? Это блокирует поток UI?
         }
     }
 }
