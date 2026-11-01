@@ -79,6 +79,7 @@ namespace WinFormsApp1
             catch (ArgumentException ex)
             {
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                UpdateView();
             }
         }
         private void numericUpDown_ValueChanged(object sender, EventArgs e)
@@ -111,6 +112,7 @@ namespace WinFormsApp1
             catch (ArgumentException ex)
             {
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                UpdateView();
             }
         }
         private void textBox_Leave(object sender, EventArgs e)
@@ -149,6 +151,7 @@ namespace WinFormsApp1
             catch (ArgumentException ex)
             {
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                UpdateView();
             }
         }
         private async void Save_Click(object sender, EventArgs e)
@@ -162,7 +165,7 @@ namespace WinFormsApp1
             try
             {
                 await _numbers.LoadData();
-
+                UpdateView();
             }
             catch (InvalidOperationException)
             {
