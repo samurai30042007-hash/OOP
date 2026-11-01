@@ -9,29 +9,36 @@ namespace laba_3._1
 
         public Storage()
         {
-            _circles = new List<Circle>();
+            _shapes = new List<Shape>();
         }
-        public Storage(List<Circle> circles)
+        public Storage(List<Shape> circles)
         {
-            _circles = new(circles);
+            _shapes = new(circles);
         }
-        public void AddCircle(int radius, int x, int y)
+        public void AddCircle(Shape shape)
         {
-            _circles.Add(new Circle(x, y, radius));
+            switch (shape.WhoAmI())
+            {
+                case "Circle":
+                    _shapes.Add(shape);
+                    break;
+                default:
+                    break;
+            }
         }
-        public bool SelectCircle(int x, int y, bool isPressCtrl)
+        public bool SelectShape(int x, int y, bool isPressCtrl)
         {
             bool isCircleFound = false;
             if (!isPressCtrl)
             {
-                foreach (var circle in _circles)
+                foreach (var circle in _shapes)
                 {
                     circle.ChangeSelect(false);
                 }
             }
-            for (int i = _circles.Count - 1; i >= 0; i--)
+            for (int i = _shapes.Count - 1; i >= 0; i--)
             {
-                var circle = _circles[i]
+                var circle = _shapes[i];
 
                 if (circle.IsInside(x, y))
                 {
@@ -42,18 +49,18 @@ namespace laba_3._1
             }
             return isCircleFound;
         }
-        public void RemoveSelectedCircles()
+        public void RemoveSelectedShapes()
         {
-            _circles.RemoveAll(circle => circle.IsSelect);
+            _shapes.RemoveAll(circle => circle.IsSelect);
         }
         public void DrawAll(Graphics graphics)
         {
-            foreach (var circle in _circles)
+            foreach (var circle in _shapes)
             {
                 circle.Draw(graphics);
             }
         }
 
-        private List<Circle> _circles;
+        private List<Shape> _shapes;
     }
 }
