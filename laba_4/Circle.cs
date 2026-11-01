@@ -33,16 +33,6 @@ namespace laba_3._1
             Radius = circle.Radius;
             IsSelect = circle.IsSelect;
         }
-
-        public override void ChangeSelect()
-        {
-            IsSelect = !IsSelect;
-        }
-        public override void ChangeSelect(bool isSelect)
-        {
-            IsSelect = isSelect;
-        }
-
         public override bool IsInside(int x, int y)
         {
             double distance = Math.Sqrt(Math.Pow(x - PosX, 2) + Math.Pow(y - PosY, 2));
@@ -71,6 +61,11 @@ namespace laba_3._1
                 );
             }
         }
+        public override void Move(int dx, int dy)
+        {
+            PosX += dx;
+            PosY += dy;
+        }
 
         private int _radius;
 
@@ -95,14 +90,6 @@ namespace laba_3._1
             Width = rectangle.Width;
             Height = rectangle.Height;
             IsSelect = rectangle.IsSelect;
-        }
-        public override void ChangeSelect()
-        {
-            IsSelect = !IsSelect;
-        }
-        public override void ChangeSelect(bool isSelect)
-        {
-            IsSelect = isSelect;
         }
         public override bool IsInside(int x, int y)
         {
@@ -131,6 +118,11 @@ namespace laba_3._1
                 );
             }
         }
+        public override void Move(int dx, int dy)
+        {
+            PosX += dx;
+            PosY += dy;
+        }
     }   
     public class Triangle : Shape
     {
@@ -150,14 +142,6 @@ namespace laba_3._1
             Point3 = triangle.Point3;
             IsSelect = triangle.IsSelect;
         }
-        public override void ChangeSelect()
-        {
-            IsSelect = !IsSelect;
-        }
-        public override void ChangeSelect(bool isSelect)
-        {
-            IsSelect = isSelect;
-        }
         public override bool IsInside(int x, int y)
         {
             // Use barycentric coordinates to check if the point is inside the triangle
@@ -171,6 +155,12 @@ namespace laba_3._1
         {
             Pen pen = IsSelect ? Pens.Blue : Pens.Black;
             graphics.DrawPolygon(pen, new[] { Point1, Point2, Point3 });
+        }
+        public override void Move(int dx, int dy)
+        {
+            Point1 = new Point(Point1.X + dx, Point1.Y + dy);
+            Point2 = new Point(Point2.X + dx, Point2.Y + dy);
+            Point3 = new Point(Point3.X + dx, Point3.Y + dy);
         }
     }
 }

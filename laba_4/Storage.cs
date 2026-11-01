@@ -15,49 +15,42 @@ namespace laba_3._1
         {
             _shapes = new(circles);
         }
-        public void AddCircle(Shape shape)
+        public void AddShape(Shape shape)
         {
-            switch (shape.WhoAmI())
-            {
-                case "Circle":
-                    _shapes.Add(shape);
-                    break;
-                default:
-                    break;
-            }
+            _shapes.Add(shape);
         }
         public bool SelectShape(int x, int y, bool isPressCtrl)
         {
-            bool isCircleFound = false;
+            bool isShapeFound = false;
             if (!isPressCtrl)
             {
-                foreach (var circle in _shapes)
+                foreach (var shape in _shapes)
                 {
-                    circle.ChangeSelect(false);
+                    shape.ChangeSelect(false);
                 }
             }
             for (int i = _shapes.Count - 1; i >= 0; i--)
             {
-                var circle = _shapes[i];
+                var shape = _shapes[i];
 
-                if (circle.IsInside(x, y))
+                if (shape.IsInside(x, y))
                 {
-                    isCircleFound = true;
-                    circle.ChangeSelect();
+                    isShapeFound = true;
+                    shape.ChangeSelect();
                     break;
                 }
             }
-            return isCircleFound;
+            return isShapeFound;
         }
         public void RemoveSelectedShapes()
         {
-            _shapes.RemoveAll(circle => circle.IsSelect);
+            _shapes.RemoveAll(shape => shape.IsSelect);
         }
         public void DrawAll(Graphics graphics)
         {
-            foreach (var circle in _shapes)
+            foreach (var shape in _shapes)
             {
-                circle.Draw(graphics);
+                shape.Draw(graphics);
             }
         }
 
