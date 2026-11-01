@@ -64,6 +64,7 @@
             textBox1.Name = "textBox1";
             textBox1.Size = new Size(125, 27);
             textBox1.TabIndex = 1;
+            textBox1.Leave += textBox_Leave;
             // 
             // trackBar1
             // 
@@ -71,6 +72,7 @@
             trackBar1.Name = "trackBar1";
             trackBar1.Size = new Size(130, 56);
             trackBar1.TabIndex = 2;
+            trackBar1.Scroll += trackBar_Scroll;
             // 
             // trackBar2
             // 
@@ -78,6 +80,7 @@
             trackBar2.Name = "trackBar2";
             trackBar2.Size = new Size(130, 56);
             trackBar2.TabIndex = 5;
+            trackBar2.Scroll += trackBar_Scroll;
             // 
             // textBox2
             // 
@@ -85,6 +88,7 @@
             textBox2.Name = "textBox2";
             textBox2.Size = new Size(125, 27);
             textBox2.TabIndex = 4;
+            textBox2.Leave += textBox_Leave;
             // 
             // trackBar3
             // 
@@ -92,6 +96,7 @@
             trackBar3.Name = "trackBar3";
             trackBar3.Size = new Size(130, 56);
             trackBar3.TabIndex = 8;
+            trackBar3.Scroll += trackBar_Scroll;
             // 
             // textBox3
             // 
@@ -99,6 +104,7 @@
             textBox3.Name = "textBox3";
             textBox3.Size = new Size(125, 27);
             textBox3.TabIndex = 7;
+            textBox3.Leave += textBox_Leave;
             // 
             // Save
             // 
@@ -126,6 +132,7 @@
             numericUpDown1.Name = "numericUpDown1";
             numericUpDown1.Size = new Size(150, 27);
             numericUpDown1.TabIndex = 12;
+            numericUpDown1.ValueChanged += numericUpDown_ValueChanged;
             // 
             // numericUpDown2
             // 
@@ -133,6 +140,7 @@
             numericUpDown2.Name = "numericUpDown2";
             numericUpDown2.Size = new Size(150, 27);
             numericUpDown2.TabIndex = 13;
+            numericUpDown2.ValueChanged += numericUpDown_ValueChanged;
             // 
             // numericUpDown3
             // 
@@ -140,6 +148,7 @@
             numericUpDown3.Name = "numericUpDown3";
             numericUpDown3.Size = new Size(150, 27);
             numericUpDown3.TabIndex = 14;
+            numericUpDown3.ValueChanged += numericUpDown_ValueChanged;
             // 
             // Form1
             // 
