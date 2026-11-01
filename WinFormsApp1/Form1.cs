@@ -19,7 +19,7 @@ namespace WinFormsApp1
             trackBar3.Maximum = Num.MaxValue;
         }
 
-        private void Model_NumChanged(object? sender, EventArgs e)
+        private void Model_NumChanged(object? sender, EventArgs e) 
         {
             isUpdating = true;
             try
