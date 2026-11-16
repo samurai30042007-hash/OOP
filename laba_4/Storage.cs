@@ -63,10 +63,11 @@ namespace laba_3._1
                     canMove = false;
                     break;
                 }
-                if (canMove)
-                {
-                    shape.Move(dx, dy);
-                }
+                
+            }
+            if (canMove)
+            {
+                shape.Move(dx, dy);
             }
         }
         private List<Shape> _shapes;
