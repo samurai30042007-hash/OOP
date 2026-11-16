@@ -4,6 +4,7 @@ namespace laba_3._1
     {
         private Storage _storage = new Storage();
         private const int MoveStep= 10;
+        private const int ResizeStep = 5;
         public Form1()
         {
             InitializeComponent();
@@ -16,7 +17,7 @@ namespace laba_3._1
                 bool isCircleFound = _storage.SelectShape(e.X, e.Y, Control.ModifierKeys == Keys.Control);
                 if (!isCircleFound)
                 {
-                    _storage.AddShape(new Circle(e.X, e.Y, 50));
+                    _storage.AddShape(new Rectangle(e.X, e.Y, 25,25));
                 }
             }
             Invalidate();
@@ -42,6 +43,14 @@ namespace laba_3._1
                 case Keys.Delete:
                     _storage.RemoveSelectedShapes();
                     break;
+                case Keys.Q:
+                    _storage.ResizeSelectedShapes(-ResizeStep, this.ClientRectangle);
+                    break;
+                case Keys.E:
+                    _storage.ResizeSelectedShapes(ResizeStep, this.ClientRectangle);
+                    break;
+
+
             }
             Invalidate();
 

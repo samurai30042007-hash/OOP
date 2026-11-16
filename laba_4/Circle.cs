@@ -66,6 +66,14 @@ namespace laba_3._1
             }
         }
 
+        public override void Resize(int delta)
+        {
+            if (Radius + delta < 0)
+            {
+                throw new ArgumentException("Radius cannot be negative.");
+            }
+            Radius += delta;
+        }
 
 
     }
@@ -74,7 +82,7 @@ namespace laba_3._1
         public override RectangleF Bounds
         {
             get
-            { 
+            {
                 return new RectangleF(PosX, PosY, Width, Height);
             }
         }
@@ -121,6 +129,15 @@ namespace laba_3._1
                     Height
                 );
             }
+        }
+        public override void Resize(int delta)
+        {
+            if (Width + delta < 0 || Height + delta < 0)
+            {
+                throw new ArgumentException("Width and Height cannot be negative.");
+            }
+            Width += delta;
+            Height += delta;
         }
 
     }
@@ -192,6 +209,14 @@ namespace laba_3._1
             PointF[] vertices = GetVertices();
             graphics.DrawPolygon(pen, vertices);
         }
-    }
+        public override void Resize(int delta)
+        {
+            if (lenght + delta < 0)
+            {
+                throw new ArgumentException("Length cannot be negative.");
+            }
+            lenght += delta;
+        }
 
+    }
 }

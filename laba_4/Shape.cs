@@ -31,6 +31,28 @@ namespace laba_3._1
             futureBounds.Offset(dx, dy);
             return workArea.Contains(futureBounds);
         }
+        public abstract void Resize(int delta);
+        public bool CanResize(int delta, RectangleF workArea)
+        {
+            try
+            {
+                this.Resize(delta);
+
+            }
+            catch (Exception)
+            {
+                this.Resize(-delta);
+                throw;
+            }
+            RectangleF futureBounds = this.Bounds;
+            Resize(-delta);
+            if (!workArea.Contains(Bounds))
+            {
+                return false;
+            }
+            return true;
+            
+        }
 
     }
 }

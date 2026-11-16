@@ -78,6 +78,28 @@ namespace laba_3._1
                 }
             }
         }
+        public void ResizeSelectedShapes(int delta, RectangleF workArea)
+        {
+            bool canResize = true;
+            foreach (var shape in _shapes)
+            {
+                if (shape.IsSelect && (shape.CanResize(delta, workArea) == false))
+                {
+                    canResize = false;
+                    break;
+                }
+            }
+            if (canResize)
+            {
+                foreach (var shape in _shapes)
+                {
+                    if (shape.IsSelect)
+                    {
+                        shape.Resize(delta);
+                    }
+                }
+            }
+        }
         private List<Shape> _shapes;
     }
 }
