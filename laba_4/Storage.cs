@@ -65,10 +65,14 @@ namespace laba_3._1
                 }
                 
             }
-            if (canMove)
+            foreach (var shape in _shapes)
             {
-                shape.Move(dx, dy);
+                if (canMove)
+                {
+                    shape.Move(dx, dy);
+                }
             }
+            
         }
         private List<Shape> _shapes;
     }
