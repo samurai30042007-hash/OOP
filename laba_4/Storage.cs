@@ -53,13 +53,13 @@ namespace laba_3._1
                 shape.Draw(graphics);
             }
         }
-        public void MoveSelectedShapes(int dx, int dy)
+        public void MoveSelectedShapes(int dx, int dy, RectangleF workArea)
         {
             foreach (var shape in _shapes)
             {
                 if (shape.IsSelect)
                 {
-                    shape.Move(dx, dy);
+                    shape.CanMove(dx, dy, workArea);
                 }
             }
         }
