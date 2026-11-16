@@ -40,12 +40,7 @@ namespace laba_3._1
                 var clone = (Shape)this.MemberwiseClone();
                 clone.Resize(delta);
                 RectangleF futureBounds = clone.Bounds;
-                Resize(-delta);
-                if (!workArea.Contains(futureBounds))
-                {
-                    return false;
-                }
-                return true;
+                return workArea.Contains(futureBounds);
             }
             catch (Exception)
             {

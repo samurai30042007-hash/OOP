@@ -73,6 +73,15 @@ namespace laba_3._1
                 case Keys.NumPad3:
                     _choosenShape = 2;
                     break;
+                case Keys.C:
+                    ColorDialog dialog = new ColorDialog();
+
+                    if (dialog.ShowDialog() == DialogResult.OK)
+                    {
+                        _storage.ChangeSelectedColor(dialog.Color);
+                        Invalidate();
+                    }
+                    break;
 
 
             }
