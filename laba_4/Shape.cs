@@ -20,19 +20,16 @@ namespace laba_3._1
         }
         abstract public bool IsInside(int x, int y);
         abstract public void Draw(Graphics graphics);
-        virtual protected void Move (int dx, int dy)
+        virtual public void Move (int dx, int dy)
         {
             PosX += dx;
             PosY += dy;
         }
-        public void CanMove(int dx, int dy, RectangleF workArea)
+        public bool CanMove(int dx, int dy, RectangleF workArea)
         {
             RectangleF futureBounds = this.Bounds;
             futureBounds.Offset(dx, dy);
-            if (workArea.Contains(futureBounds))
-            {
-                Move(dx, dy);
-            }
+            return workArea.Contains(futureBounds);
         }
 
     }

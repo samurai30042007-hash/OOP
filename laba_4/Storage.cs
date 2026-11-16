@@ -55,11 +55,17 @@ namespace laba_3._1
         }
         public void MoveSelectedShapes(int dx, int dy, RectangleF workArea)
         {
+            bool canMove = true;
             foreach (var shape in _shapes)
             {
-                if (shape.IsSelect)
+                if (!(shape.IsSelect && shape.CanMove(dx, dy, workArea)))
                 {
-                    shape.CanMove(dx, dy, workArea);
+                    canMove = false;
+                    break;
+                }
+                if (canMove)
+                {
+                    shape.Move(dx, dy);
                 }
             }
         }
