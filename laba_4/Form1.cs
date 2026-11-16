@@ -15,7 +15,7 @@ namespace laba_3._1
                 bool isCircleFound = _storage.SelectShape(e.X, e.Y, Control.ModifierKeys == Keys.Control);
                 if (!isCircleFound)
                 {
-                    _storage.AddShape(new Circle(1, e.X, e.Y));
+                    _storage.AddShape(new Circle(e.X, e.Y, 50));
                 }
             }
             Invalidate();
