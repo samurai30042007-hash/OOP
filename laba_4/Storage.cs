@@ -58,21 +58,25 @@ namespace laba_3._1
             bool canMove = true;
             foreach (var shape in _shapes)
             {
-                if (!(shape.IsSelect && shape.CanMove(dx, dy, workArea)))
+                if (shape.IsSelect && (shape.CanMove(dx, dy, workArea) == false))
                 {
                     canMove = false;
                     break;
                 }
                 
             }
-            foreach (var shape in _shapes)
+            if (canMove)
             {
-                if (canMove)
+
+
+                foreach (var shape in _shapes)
                 {
-                    shape.Move(dx, dy);
+                    if (shape.IsSelect)
+                    {
+                        shape.Move(dx, dy);
+                    }
                 }
             }
-            
         }
         private List<Shape> _shapes;
     }
