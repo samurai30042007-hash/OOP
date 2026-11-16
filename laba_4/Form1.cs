@@ -3,7 +3,7 @@ namespace laba_3._1
     public partial class Form1 : Form
     {
         private Storage _storage = new Storage();
-        private const int MoveStep= 10;
+        private const int MoveStep = 10;
         private const int ResizeStep = 10;
         private int _choosenShape = 0;
         public Form1()
@@ -49,7 +49,7 @@ namespace laba_3._1
                     {
                         _storage.ResizeSelectedShapes(-ResizeStep, this.ClientRectangle);
                     }
-                    catch 
+                    catch
                     {
                         MessageBox.Show("НЕльзя уменьшить число отрицательное");
                     }
@@ -74,25 +74,42 @@ namespace laba_3._1
                     _choosenShape = 2;
                     break;
                 case Keys.C:
-                    ColorDialog dialog = new ColorDialog();
-
-                    if (dialog.ShowDialog() == DialogResult.OK)
                     {
-                        _storage.ChangeSelectedColor(dialog.Color);
-                        Invalidate();
+                        ColorDialog dialog = new ColorDialog();
+
+                        if (dialog.ShowDialog() == DialogResult.OK)
+                        {
+                            _storage.ChangeSelectedColor(dialog.Color);
+                            Invalidate();
+                        }
+                        break;
                     }
-                    break;
 
 
             }
             Invalidate();
 
         }
-        
+
 
         private void Form1_Paint(object sender, PaintEventArgs e)
         {
             _storage.DrawAll(e.Graphics);
+        }
+
+        private void кРУГToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            _choosenShape = 0;
+        }
+
+        private void пРЯМОУГОЛЬНИКToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            _choosenShape = 1;
+        }
+
+        private void тРЕУГОЛЬНИКToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            _choosenShape = 2;
         }
     }
 }
