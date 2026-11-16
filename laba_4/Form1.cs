@@ -4,7 +4,7 @@ namespace laba_3._1
     {
         private Storage _storage = new Storage();
         private const int MoveStep= 10;
-        private const int ResizeStep = 5;
+        private const int ResizeStep = 10;
         public Form1()
         {
             InitializeComponent();
@@ -17,7 +17,7 @@ namespace laba_3._1
                 bool isCircleFound = _storage.SelectShape(e.X, e.Y, Control.ModifierKeys == Keys.Control);
                 if (!isCircleFound)
                 {
-                    _storage.AddShape(new Rectangle(e.X, e.Y, 25,25));
+                    _storage.AddShape(new Rectangle(e.X, e.Y, 25,25), this.ClientRectangle);
                 }
             }
             Invalidate();
@@ -44,10 +44,24 @@ namespace laba_3._1
                     _storage.RemoveSelectedShapes();
                     break;
                 case Keys.Q:
-                    _storage.ResizeSelectedShapes(-ResizeStep, this.ClientRectangle);
+                    try
+                    {
+                        _storage.ResizeSelectedShapes(-ResizeStep, this.ClientRectangle);
+                    }
+                    catch 
+                    {
+                        MessageBox.Show("НЕльзя уменьшить число отрицательное");
+                    }
                     break;
                 case Keys.E:
-                    _storage.ResizeSelectedShapes(ResizeStep, this.ClientRectangle);
+                    try
+                    {
+                        _storage.ResizeSelectedShapes(ResizeStep, this.ClientRectangle);
+                    }
+                    catch
+                    {
+                        MessageBox.Show("НЕльзя уменьшить число отрицательное");
+                    }
                     break;
 
 

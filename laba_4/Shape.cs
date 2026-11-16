@@ -37,20 +37,19 @@ namespace laba_3._1
             try
             {
                 this.Resize(delta);
-
+                RectangleF futureBounds = this.Bounds;
+                Resize(-delta);
+                if (!workArea.Contains(Bounds))
+                {
+                    return false;
+                }
+                return true;
             }
             catch (Exception)
             {
-                this.Resize(-delta);
                 throw;
             }
-            RectangleF futureBounds = this.Bounds;
-            Resize(-delta);
-            if (!workArea.Contains(Bounds))
-            {
-                return false;
-            }
-            return true;
+            
             
         }
 
