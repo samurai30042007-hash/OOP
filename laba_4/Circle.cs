@@ -5,6 +5,13 @@ namespace laba_3._1
     public class Circle : Shape
     {
         private int _radius;
+        public override RectangleF Bounds
+        {
+            get
+            {
+                return new RectangleF(PosX - Radius, PosY - Radius, Radius * 2, Radius * 2);
+            }
+        }
         public int Radius
         {
             get { return _radius; }
@@ -64,6 +71,13 @@ namespace laba_3._1
     }
     public class Rectangle : Shape
     {
+        public override RectangleF Bounds
+        {
+            get
+            { 
+                return new RectangleF(PosX, PosY, Width, Height);
+            }
+        }
         public int Width { get; private set; }
         public int Height { get; private set; }
         public Rectangle(int x, int y, int width, int height)
@@ -110,10 +124,18 @@ namespace laba_3._1
         }
 
     }
-
-public class Triangle : Shape
+    public class Triangle : Shape
     {
-        private int lenght;
+        private float lenght;
+
+        public override RectangleF Bounds
+        {
+            get
+            {
+                return new RectangleF(PosX - lenght / 2, PosY, lenght, (float)(lenght * Math.Sqrt(3) / 2));
+            }
+        }
+
 
         public Triangle(int x, int y, int length)
         {

@@ -9,7 +9,7 @@ namespace laba_3._1
 
         public Storage()
         {
-            _shapes = new List<Shape>();
+            _shapes = new();
         }
         public Storage(List<Shape> circles)
         {
@@ -57,7 +57,10 @@ namespace laba_3._1
         {
             foreach (var shape in _shapes)
             {
+                if (shape.IsSelect)
+                {
                     shape.Move(dx, dy);
+                }
             }
         }
         private List<Shape> _shapes;

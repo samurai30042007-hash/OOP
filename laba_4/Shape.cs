@@ -7,6 +7,7 @@ namespace laba_3._1
     public abstract class Shape
     {
         public bool IsSelect { get; protected set; }
+        public abstract RectangleF Bounds { get; }
         protected int PosX;
         protected int PosY;
         virtual public void ChangeSelect(bool isSelect)
@@ -21,12 +22,10 @@ namespace laba_3._1
         abstract public void Draw(Graphics graphics);
         virtual public void Move (int dx, int dy)
         {
-            if (IsSelect)
-            {
-                PosX += dx;
-                PosY += dy;
-            }
-           
+            PosX += dx;
+            PosY += dy;
         }
+        
+
     }
 }
