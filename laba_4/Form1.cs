@@ -12,10 +12,10 @@ namespace laba_3._1
         {
             if (e.Button == MouseButtons.Left)
             {
-                bool isCircleFound = _storage.SelectCircle(e.X, e.Y, Control.ModifierKeys == Keys.Control);
+                bool isCircleFound = _storage.SelectShape(e.X, e.Y, Control.ModifierKeys == Keys.Control);
                 if (!isCircleFound)
                 {
-                    _storage.AddCircle(50, e.X, e.Y);
+                    _storage.AddShape(new Circle(1, e.X, e.Y));
                 }
             }
             Invalidate();
@@ -26,7 +26,7 @@ namespace laba_3._1
         {
             if (e.KeyCode == Keys.Delete) 
             {
-                _storage.RemoveSelectedCircles();
+                _storage.RemoveSelectedShapes();
                 Invalidate();
             }
             
