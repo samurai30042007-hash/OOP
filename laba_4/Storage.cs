@@ -15,9 +15,22 @@ namespace laba_3._1
         {
             _shapes = new(circles);
         }
-        public void AddShape(Shape shape, RectangleF workArea)
+        public void AddShape(int choosenShape, RectangleF workArea, MouseEventArgs e)
         {
-            if(workArea.Contains(shape.Bounds))
+            Shape? shape = null;
+            switch (choosenShape)
+            {
+                case 0:
+                    shape = new Circle(e.X, e.Y, 25);
+                    break;
+                case 1:
+                    shape = new Rectangle(e.X, e.Y, 25, 25);
+                    break;
+                case 2:
+                    shape = new Triangle(e.X, e.Y, 25);
+                    break;
+            }
+            if(workArea.Contains(shape!.Bounds))
                 _shapes.Add(shape);
         }
         public bool SelectShape(int x, int y, bool isPressCtrl)

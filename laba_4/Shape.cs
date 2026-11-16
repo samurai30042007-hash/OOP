@@ -39,7 +39,7 @@ namespace laba_3._1
                 this.Resize(delta);
                 RectangleF futureBounds = this.Bounds;
                 Resize(-delta);
-                if (!workArea.Contains(Bounds))
+                if (!workArea.Contains(futureBounds))
                 {
                     return false;
                 }
