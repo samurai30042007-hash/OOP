@@ -5,10 +5,18 @@ namespace laba_3._1
         private Storage _storage = new Storage();
         private const int MoveStep = 10;
         private const int ResizeStep = 10;
+        RectangleF workArea;
+
         private int _choosenShape = 0;
         public Form1()
         {
             InitializeComponent();
+            workArea = new RectangleF(
+               0,
+               menuStrip1.Bottom,
+               ClientSize.Width,
+               ClientSize.Height - menuStrip1.Bottom
+           );
         }
 
         private void Form1_MouseDown(object sender, MouseEventArgs e)
@@ -18,7 +26,7 @@ namespace laba_3._1
                 bool isCircleFound = _storage.SelectShape(e.X, e.Y, Control.ModifierKeys == Keys.Control);
                 if (!isCircleFound)
                 {
-                    _storage.AddShape(_choosenShape, this.ClientRectangle, e.X, e.Y);
+                    _storage.AddShape(_choosenShape, workArea, e.X, e.Y);
                 }
             }
             Invalidate();
@@ -30,16 +38,16 @@ namespace laba_3._1
             switch (e.KeyCode)
             {
                 case Keys.Left:
-                    _storage.MoveSelectedShapes(-MoveStep, 0, this.ClientRectangle);
+                    _storage.MoveSelectedShapes(-MoveStep, 0, workArea);
                     break;
                 case Keys.Right:
-                    _storage.MoveSelectedShapes(MoveStep, 0, this.ClientRectangle);
+                    _storage.MoveSelectedShapes(MoveStep, 0, workArea);
                     break;
                 case Keys.Up:
-                    _storage.MoveSelectedShapes(0, -MoveStep, this.ClientRectangle);
+                    _storage.MoveSelectedShapes(0, -MoveStep, workArea);
                     break;
                 case Keys.Down:
-                    _storage.MoveSelectedShapes(0, MoveStep, this.ClientRectangle);
+                    _storage.MoveSelectedShapes(0, MoveStep, workArea);
                     break;
                 case Keys.Delete:
                     _storage.RemoveSelectedShapes();
@@ -47,7 +55,7 @@ namespace laba_3._1
                 case Keys.Q:
                     try
                     {
-                        _storage.ResizeSelectedShapes(-ResizeStep, this.ClientRectangle);
+                        _storage.ResizeSelectedShapes(-ResizeStep, workArea);
                     }
                     catch
                     {
@@ -57,7 +65,7 @@ namespace laba_3._1
                 case Keys.E:
                     try
                     {
-                        _storage.ResizeSelectedShapes(ResizeStep, this.ClientRectangle);
+                        _storage.ResizeSelectedShapes(ResizeStep, workArea);
                     }
                     catch
                     {
@@ -110,6 +118,16 @@ namespace laba_3._1
         private void тРЕУГОЛЬНИКToolStripMenuItem_Click(object sender, EventArgs e)
         {
             _choosenShape = 2;
+        }
+
+        private void Form1_Resize(object sender, EventArgs e)
+        {
+            workArea = new RectangleF(
+               0,
+               menuStrip1.Bottom,
+               ClientSize.Width,
+               ClientSize.Height - menuStrip1.Bottom
+           );
         }
     }
 }

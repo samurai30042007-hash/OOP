@@ -78,6 +78,7 @@
             Paint += Form1_Paint;
             KeyDown += Form1_KeyDown;
             MouseDown += Form1_MouseDown;
+            Resize += Form1_Resize;
             menuStrip1.ResumeLayout(false);
             menuStrip1.PerformLayout();
             ResumeLayout(false);
