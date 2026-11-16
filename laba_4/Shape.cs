@@ -9,6 +9,7 @@ namespace laba_3._1
         public bool IsSelect { get; protected set; }
         public abstract RectangleF Bounds { get; }
         protected int PosX;
+        public Color ShapeColor { get; set; } = Color.Black;
         protected int PosY;
         virtual public void ChangeSelect(bool isSelect)
         {
@@ -36,8 +37,9 @@ namespace laba_3._1
         {
             try
             {
-                this.Resize(delta);
-                RectangleF futureBounds = this.Bounds;
+                var clone = (Shape)this.MemberwiseClone();
+                clone.Resize(delta);
+                RectangleF futureBounds = clone.Bounds;
                 Resize(-delta);
                 if (!workArea.Contains(futureBounds))
                 {

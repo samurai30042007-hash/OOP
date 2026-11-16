@@ -15,19 +15,19 @@ namespace laba_3._1
         {
             _shapes = new(circles);
         }
-        public void AddShape(int choosenShape, RectangleF workArea, MouseEventArgs e)
+        public void AddShape(int choosenShape, RectangleF workArea, int X, int Y)
         {
             Shape? shape = null;
             switch (choosenShape)
             {
                 case 0:
-                    shape = new Circle(e.X, e.Y, 25);
+                    shape = new Circle(X, Y, 25);
                     break;
                 case 1:
-                    shape = new Rectangle(e.X, e.Y, 25, 25);
+                    shape = new Rectangle(X, Y, 25, 30);
                     break;
                 case 2:
-                    shape = new Triangle(e.X, e.Y, 25);
+                    shape = new Triangle(X, Y, 25);
                     break;
             }
             if(workArea.Contains(shape!.Bounds))
@@ -111,6 +111,16 @@ namespace laba_3._1
                     {
                         shape.Resize(delta);
                     }
+                }
+            }
+        }
+        public void ChangeSelectedColor(Color color)
+        {
+            foreach (var shape in _shapes)
+            {
+                if (shape.IsSelect)
+                {
+                    shape.ShapeColor = color;
                 }
             }
         }

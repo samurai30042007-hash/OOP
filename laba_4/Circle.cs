@@ -57,7 +57,7 @@ namespace laba_3._1
             else
             {
                 graphics.DrawEllipse(
-                    Pens.Black,
+                    new Pen(ShapeColor),
                     PosX - Radius,
                     PosY - Radius,
                     Radius * 2,
@@ -122,7 +122,7 @@ namespace laba_3._1
             else
             {
                 graphics.DrawRectangle(
-                    Pens.Black,
+                    new Pen(ShapeColor),
                     PosX,
                     PosY,
                     Width,
@@ -205,7 +205,7 @@ namespace laba_3._1
 
         public override void Draw(Graphics graphics)
         {
-            Pen pen = IsSelect ? Pens.Blue : Pens.Black;
+            Pen pen = IsSelect ? Pens.Blue : new Pen(ShapeColor);
             PointF[] vertices = GetVertices();
             graphics.DrawPolygon(pen, vertices);
         }
