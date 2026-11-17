@@ -133,7 +133,7 @@
             numericUpDown1.Name = "numericUpDown1";
             numericUpDown1.Size = new Size(150, 27);
             numericUpDown1.TabIndex = 12;
-            numericUpDown1.ValueChanged += numericUpDown_ValueChanged;
+            numericUpDown1.Leave += numericUpDown_ValueChanged;
             // 
             // numericUpDown2
             // 
@@ -141,7 +141,7 @@
             numericUpDown2.Name = "numericUpDown2";
             numericUpDown2.Size = new Size(150, 27);
             numericUpDown2.TabIndex = 13;
-            numericUpDown2.ValueChanged += numericUpDown_ValueChanged;
+            numericUpDown2.Leave += numericUpDown_ValueChanged;
             // 
             // numericUpDown3
             // 
@@ -149,7 +149,7 @@
             numericUpDown3.Name = "numericUpDown3";
             numericUpDown3.Size = new Size(150, 27);
             numericUpDown3.TabIndex = 14;
-            numericUpDown3.ValueChanged += numericUpDown_ValueChanged;
+            numericUpDown3.Leave += numericUpDown_ValueChanged;
             // 
             // label2
             // 

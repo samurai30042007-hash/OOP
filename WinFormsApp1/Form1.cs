@@ -28,7 +28,7 @@ namespace WinFormsApp1
             }
             catch (ArgumentException ex)
             {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+               
             }
             finally
             {
@@ -78,7 +78,6 @@ namespace WinFormsApp1
             }
             catch (ArgumentException ex)
             {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 UpdateView();
             }
         }
@@ -111,8 +110,12 @@ namespace WinFormsApp1
             }
             catch (ArgumentException ex)
             {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 UpdateView();
+            }
+            finally
+            {
+                
+                numericUpDown.Text = numericUpDown.Value.ToString();
             }
         }
         private void textBox_Leave(object sender, EventArgs e)
@@ -127,7 +130,6 @@ namespace WinFormsApp1
             }
             if (!int.TryParse(textBox.Text, out int value))
             {
-                MessageBox.Show("Please enter a valid integer.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 UpdateView();
                 return;
             }
@@ -150,7 +152,6 @@ namespace WinFormsApp1
             }
             catch (ArgumentException ex)
             {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 UpdateView();
             }
         }
@@ -214,7 +215,7 @@ namespace WinFormsApp1
         }
         private  void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
-            _numbers.SaveData().Wait(); // Что за Wait()? Это блокирует поток UI?
+            _numbers.SaveData().Wait(); 
         }
     }
 }
