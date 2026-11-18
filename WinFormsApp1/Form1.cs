@@ -22,18 +22,10 @@ namespace WinFormsApp1
         private void Model_NumChanged(object? sender, EventArgs e) 
         {
             isUpdating = true;
-            try
-            {
                 UpdateView();
-            }
-            catch (ArgumentException ex)
-            {
-               
-            }
-            finally
-            {
+            
                 isUpdating = false;
-            }
+            
         }
         private void UpdateView()
         {
@@ -155,10 +147,9 @@ namespace WinFormsApp1
                 UpdateView();
             }
         }
-        private async void Save_Click(object sender, EventArgs e)
+        private  void Save_Click(object sender, EventArgs e)
         {
-            await _numbers.SaveData();
-            UpdateView();
+            _numbers.SaveData();
 
         }
         private async void Load_Click(object sender, EventArgs e)
@@ -210,7 +201,7 @@ namespace WinFormsApp1
         }
         private  void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
-            _numbers.SaveData().Wait(); 
+            _numbers.SaveData();
         }
     }
 }
