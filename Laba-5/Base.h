@@ -9,7 +9,7 @@ class Base {
 		Base() {
 			cout << "Base constructor" << endl;
 		}
-		~Base() {
+		virtual ~Base() {
 			cout << "Base destructor" << endl;
 		}
 		virtual void PrintVirtual() {

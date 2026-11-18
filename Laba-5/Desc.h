@@ -9,7 +9,7 @@ public:
 	Desc() {
 		cout << "Desc constructor" << endl;
 	}
-	~Desc() {
+	virtual ~Desc() {
 		cout << "Desc destructor" << endl;
 	}
 	void PrintVirtual() override {

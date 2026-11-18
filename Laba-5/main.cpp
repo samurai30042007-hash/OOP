@@ -5,10 +5,11 @@ using namespace std;
 
 int main(){
 	Desc* desc = new Desc();
-	Base* base = desc;
+	Base* base = new Desc();
 	base->PrintNonVirtual();
 	base->PrintVirtual();
 	desc->PrintNonVirtual();
 	desc->PrintVirtual();	
 	delete desc;
+	delete base;
 }
