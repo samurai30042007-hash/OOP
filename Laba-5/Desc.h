@@ -18,4 +18,7 @@ public:
 	void PrintNonVirtual() {
 		cout << "Desc value" << endl;
 	}
+	void OnlyDesc() {
+		cout << "Desc only method" << endl;
+	}
 };
