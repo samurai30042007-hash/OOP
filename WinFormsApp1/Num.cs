@@ -113,12 +113,13 @@
             }
             else
                throw new InvalidDataException("Data file is corrupted or contains invalid values.");
+            NumChanged?.Invoke(this, EventArgs.Empty);
         }
-        public async Task SaveData()
+        public void SaveData()
         {
             using var stream = File.Create("data.txt");
             using var writer = new StreamWriter(stream);
-            await writer.WriteLineAsync($"{_numA},{_numB},{_numC}");
+            writer.WriteLine($"{_numA},{_numB},{_numC}");
         }
     }
 }

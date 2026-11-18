@@ -166,7 +166,6 @@ namespace WinFormsApp1
             try
             {
                 await _numbers.LoadData();
-                UpdateView();
             }
             catch (InvalidOperationException)
             {
@@ -207,10 +206,6 @@ namespace WinFormsApp1
             catch (Exception ex)
             {
                 MessageBox.Show($"An error occurred while loading data: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            finally
-            {
-                UpdateView();
             }
         }
         private  void Form1_FormClosing(object sender, FormClosingEventArgs e)
