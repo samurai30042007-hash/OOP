@@ -18,4 +18,10 @@ class Base {
 		void  PrintNonVirtual() {
 			cout << "Base value" << endl;
 		}
+		virtual string GetType() {
+			return "Base";
+		}
+		virtual bool IsA(string type) {
+			return type == "Base";
+		}
 };

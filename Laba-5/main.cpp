@@ -32,6 +32,10 @@ int main(){
 		mayDesc->OnlyDesc();
 	}
 
+	cout << "desc->GetType(): " << desc->GetType() << endl;
+	cout << "base->GetType(): " << base->GetType() << endl;
+	cout 
+
 
 	delete desc;
 	delete trueBase;

@@ -21,4 +21,10 @@ public:
 	void OnlyDesc() {
 		cout << "Desc only method" << endl;
 	}
+	string  GetType() override {
+		return "Desc";
+	}
+	bool IsA(string type) override {
+		return type == "Desc" || Base::IsA(type);
+	}	
 };
