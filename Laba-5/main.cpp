@@ -36,7 +36,10 @@ int main(){
 	cout << "base->GetType(): " << base->GetType() << endl;
 	cout << "desc->IsA(\"Base\"): " << desc->IsA("Base") << endl;
 	cout << "desc->IsA(\"Desc\"): " << desc->IsA("Desc") << endl;
-
+	if (base->IsA("Desc")) {
+		Desc* descPtr = static_cast<Desc*>(base);
+		descPtr->OnlyDesc();
+	}
 
 	delete desc;
 	delete trueBase;
