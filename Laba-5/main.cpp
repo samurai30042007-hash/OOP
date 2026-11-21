@@ -6,6 +6,10 @@ using namespace std;
 void func1(Base obj);
 void func2(Base* obj);
 void func3(Base& obj);
+Base CreateByValue();
+Base* CreateByPointer();
+Base& CreateByReference();
+Base& CreateByReferenceStatic();
 
 int main(){
 	Desc* desc = new Desc();
@@ -54,17 +58,24 @@ int main(){
 
 	cout << "\n" << endl;
 
-	Base baseByValue = base->CreateByValue();
+	Base baseByValue = CreateByValue();
 	baseByValue.PrintVirtual();
-	Base* baseByPointer = base->CreateByPointer();
+	Base* baseByPointer = CreateByPointer();
 	baseByPointer->PrintVirtual();
 	delete baseByPointer;
-	Base& baseByReference = base->CreateByReference();
+	Base& baseByReference = CreateByReference();
 	baseByReference.PrintVirtual();
-	Base& baseByReferenceStatic = base->CreateByReferenceStatic();
+	delete &baseByReference;	
+	Base& baseByReferenceStatic = CreateByReferenceStatic();
 	baseByReferenceStatic.PrintVirtual();
 	cout << "\n" << endl;
 
+	Base& first = CreateByReferenceStatic();
+	Base& second = CreateByReferenceStatic();
+	cout << "first address: " << &first << endl;
+	cout << "second address: " << &second << endl;	
+
+	cout << "\n" << endl;
 	delete desc;
 	delete trueBase;
 	delete base;
@@ -79,4 +90,21 @@ void func2(Base* obj) {
 	obj->PrintVirtual();
 }void func3(Base& obj) {
 	obj.PrintVirtual();
+}
+
+Base CreateByValue() {
+	Base bas;
+	return bas;
+}
+Base* CreateByPointer() {
+	Base* bas = new Base();
+	return bas;
+}
+Base& CreateByReference() {
+	Base* bas = new Base();
+	return *bas;
+}
+Base& CreateByReferenceStatic() {
+	static Base bas;
+	return bas;
 }
