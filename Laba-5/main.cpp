@@ -23,7 +23,7 @@ int main(){
 	}
 	mayDesc = dynamic_cast<Desc*>(base);	
 	if (mayDesc == nullptr)
-	{
+	{ 
 		cout << "dynamic_cast failed" << endl;
 	}
 	else
@@ -34,7 +34,8 @@ int main(){
 
 	cout << "desc->GetType(): " << desc->GetType() << endl;
 	cout << "base->GetType(): " << base->GetType() << endl;
-	cout 
+	cout << "desc->IsA(\"Base\"): " << desc->IsA("Base") << endl;
+	cout << "desc->IsA(\"Desc\"): " << desc->IsA("Desc") << endl;
 
 
 	delete desc;
