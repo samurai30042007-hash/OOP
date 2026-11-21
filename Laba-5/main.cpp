@@ -51,11 +51,19 @@ int main(){
 	func1(*base);
 	func2(base);
 	func3(*base);
+
+	cout << "\n" << endl;
+
+	Base baseByValue = base->CreateByValue();
+	baseByValue.PrintVirtual();
+	Base* baseByPointer = base->CreateByPointer();
+	delete baseByPointer;
 	cout << "\n" << endl;
 
 	delete desc;
 	delete trueBase;
 	delete base;
+	
 }
 
 

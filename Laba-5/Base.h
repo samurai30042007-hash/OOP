@@ -27,4 +27,12 @@ class Base {
 		virtual bool IsA(string type) {
 			return type == "Base";
 		}
+		Base CreateByValue() {
+			Base bas;
+			return bas;
+		}
+		Base* CreateByPointer() {
+			Base* bas = new Base();
+			return bas;
+		}
 };
