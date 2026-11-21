@@ -15,6 +15,12 @@ public:
 	Desc(const Desc& other) : Base(other) {
 		cout << "Desc copy constructor" << endl;
 	}
+	Desc(Desc& other) : Base(other) {
+		cout << "Desc reference copy constructor" << endl;
+	}
+	Desc(Desc* other) : Base(other) {
+		cout << "Desc pointer copy constructor" << endl;
+	}	
 	void PrintVirtual() override {
 		cout << "Desc value" << endl;
 	}

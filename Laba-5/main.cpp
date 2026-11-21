@@ -120,6 +120,18 @@ int main(){
 
 	cout << "\n" << endl;
 
+	{
+		Base b;
+		Base b1(&b);
+		Base b2(b);
+
+		Desc d;
+		Desc d1(&d);
+		Desc d2(d);
+	}
+
+	cout << "\n" << endl;
+
 	delete desc;
 	delete trueBase;
 	delete base;

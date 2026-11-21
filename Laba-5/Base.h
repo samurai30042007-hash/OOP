@@ -15,6 +15,12 @@ class Base {
 		Base(const Base& other) {
 			cout << "Base copy constructor" << endl;
 		}
+		Base(Base& other) {
+			cout << "Base reference copy constructor" << endl;
+		}
+		Base(Base* other) {
+			cout << "Base pointer copy constructor" << endl;
+		}
 		virtual void PrintVirtual() {
 			cout << "Base value" << endl;
 		}
