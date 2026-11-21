@@ -64,8 +64,7 @@ int main(){
 	baseByPointer->PrintVirtual();
 	delete baseByPointer;
 	Base& baseByReference = CreateByReference();
-	baseByReference.PrintVirtual();
-	delete &baseByReference;	
+	baseByReference.PrintVirtual();	
 	Base& baseByReferenceStatic = CreateByReferenceStatic();
 	baseByReferenceStatic.PrintVirtual();
 	cout << "\n" << endl;
@@ -73,7 +72,7 @@ int main(){
 	Base& first = CreateByReferenceStatic();
 	Base& second = CreateByReferenceStatic();
 	cout << "first address: " << &first << endl;
-	cout << "second address: " << &second << endl;	
+	cout << "second address: " << &second << endl;
 
 	cout << "\n" << endl;
 	delete desc;
@@ -101,8 +100,8 @@ Base* CreateByPointer() {
 	return bas;
 }
 Base& CreateByReference() {
-	Base* bas = new Base();
-	return *bas;
+	Base bas ;
+	return bas;
 }
 Base& CreateByReferenceStatic() {
 	static Base bas;
