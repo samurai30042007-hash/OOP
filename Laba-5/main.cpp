@@ -11,6 +11,10 @@ Base CreateByValue();
 Base* CreateByPointer();
 Base& CreateByReference();
 Base& CreateByReferenceStatic();
+// ДОБАВЛЕНО (ЛР 5): учебный возврат указателя на локальный объект; результат становится висячим.
+Base* CreateLocalByPointer();
+// ДОБАВЛЕНО (ЛР 5): учебный возврат ссылки на локальный объект; результат становится висячим.
+Base& CreateLocalByReference();
 void CheckShared(shared_ptr<Base> ptr);
 shared_ptr<Base> CreateShared();
 
@@ -179,4 +183,16 @@ void CheckShared(shared_ptr<Base> ptr) {
 shared_ptr<Base> CreateShared() {
 	auto ptr = make_shared<Base>();
 	return ptr;
+}
+
+// ДОБАВЛЕНО (ЛР 5): пример ОШИБОЧНОГО возврата указателя на локальный объект.
+Base* CreateLocalByPointer() {
+	Base obj; // Локальный объект с автоматическим временем хранения.
+	return &obj; // ОПАСНО: после выхода из функции obj уничтожен, указатель висячий.
+}
+
+// ДОБАВЛЕНО (ЛР 5): пример ОШИБОЧНОГО возврата ссылки на локальный объект.
+Base& CreateLocalByReference() {
+	Base obj; // Локальный объект с автоматическим временем хранения.
+	return obj; // ОПАСНО: после выхода из функции obj уничтожен, ссылка висячая.
 }
