@@ -35,4 +35,12 @@ class Base {
 			Base* bas = new Base();
 			return bas;
 		}
+		Base& CreateByReference() {
+			Base* bas = new Base();
+			return *bas;
+		}
+		Base& CreateByReferenceStatic() {
+			static Base bas;
+			return bas;
+		}
 };

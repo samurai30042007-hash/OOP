@@ -57,7 +57,12 @@ int main(){
 	Base baseByValue = base->CreateByValue();
 	baseByValue.PrintVirtual();
 	Base* baseByPointer = base->CreateByPointer();
+	baseByPointer->PrintVirtual();
 	delete baseByPointer;
+	Base& baseByReference = base->CreateByReference();
+	baseByReference.PrintVirtual();
+	Base& baseByReferenceStatic = base->CreateByReferenceStatic();
+	baseByReferenceStatic.PrintVirtual();
 	cout << "\n" << endl;
 
 	delete desc;
