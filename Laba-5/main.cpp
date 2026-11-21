@@ -2,7 +2,6 @@
 #include "Base.h"
 #include "Desc.h"
 #include <memory>
-// ДОБАВЛЕНО (ЛР 5): std::move для передачи владения unique_ptr.
 #include <utility>
 using namespace std;
 
@@ -17,11 +16,8 @@ Base* CreateLocalByPointer();
 Base& CreateLocalByReference();
 void CheckShared(shared_ptr<Base> ptr);
 shared_ptr<Base> CreateShared();
-// ДОБАВЛЕНО (ЛР 5): возвращаем созданный через new объект ПО ЗНАЧЕНИЮ, без утечки.
 Base CreateDynamicByValue();
-// ДОБАВЛЕНО (ЛР 5): функция возвращает единственного владельца unique_ptr.
 unique_ptr<Base> CreateUnique();
-// ДОБАВЛЕНО (ЛР 5): функция принимает unique_ptr по значению и становится его владельцем.
 void ConsumeUnique(unique_ptr<Base> ptr);
 
 int main(){
@@ -149,18 +145,16 @@ int main(){
 
 	delete obj;
 
-	// ДОБАВЛЕНО (ЛР 5): возвращённое значение независимо от исходного объекта в динамической памяти.
+	
 	{
 		Base copied = CreateDynamicByValue();
 		copied.PrintVirtual();
-	} // Автоматическое уничтожение copied; исходный объект удалён внутри CreateDynamicByValue().
-
-	// ДОБАВЛЕНО (ЛР 5): возврат unique_ptr из функции и передача владения в другую функцию.
+	} 
 	{
-		auto uniquePtr = CreateUnique(); // Созданный объект теперь принадлежит uniquePtr.
-		ConsumeUnique(move(uniquePtr)); // Владение передаётся функции, копирования объекта Base нет.
+		auto uniquePtr = CreateUnique(); 
+		ConsumeUnique(move(uniquePtr)); 
 		cout << (uniquePtr == nullptr ? "uniquePtr is nullptr" : "Error: uniquePtr still owns an object") << endl;
-	} // Объект Base уже уничтожен при завершении ConsumeUnique().
+	} 
 
 	cout << "\n" << endl;
 
@@ -216,21 +210,19 @@ Base& CreateLocalByReference() {
 }
 */
 
-// ДОБАВЛЕНО (ЛР 5): безопасный возврат по значению из объекта, созданного через new.
 Base CreateDynamicByValue() {
-	Base* heapObj = new Base(); // Динамический исходный объект, требует освобождения.
-	Base result = *heapObj; // Создаём отдельный объект через конструктор копирования.
-	delete heapObj; // Освобождаем исходный объект ДО возврата; нет утечки.
-	return result; // NRVO может устранить дополнительное копирование при возврате.
+	Base* heapObj = new Base(); 
+	Base result = *heapObj; 
+	delete heapObj; 
+	return result; 
 }
 
-// ДОБАВЛЕНО (ЛР 5): make_unique создаёт объект и возвращает владеющий unique_ptr.
 unique_ptr<Base> CreateUnique() {
 	auto ptr = make_unique<Base>();
-	return ptr; // Возврат перемещает владение; объект Base не копируется.
+	return ptr; 
 }
 
-// ДОБАВЛЕНО (ЛР 5): параметр по значению принимает владение, полученное через std::move.
+
 void ConsumeUnique(unique_ptr<Base> ptr) {
 	ptr->PrintVirtual();
-} // При выходе из функции ptr уничтожается вместе с принадлежащим ему Base.
+} 
