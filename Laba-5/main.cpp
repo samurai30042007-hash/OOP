@@ -92,6 +92,15 @@ int main(){
 	}
 
 	cout << "\n" << endl;
+
+	auto ptr1 = make_shared<Base>();
+	auto ptr2 = ptr1;
+	cout << ptr2.use_count() << "\n";
+	ptr1.reset();
+	cout << ptr2.use_count() << "\n";
+	ptr2.reset();
+
+	cout << "\n" << endl;
 	delete desc;
 	delete trueBase;
 	delete base;
