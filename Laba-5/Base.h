@@ -12,6 +12,9 @@ class Base {
 		virtual ~Base() {
 			cout << "Base destructor" << endl;
 		}
+		Base(const Base& other) {
+			cout << "Base copy constructor" << endl;
+		}
 		virtual void PrintVirtual() {
 			cout << "Base value" << endl;
 		}

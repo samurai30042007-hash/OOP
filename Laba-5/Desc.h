@@ -12,6 +12,9 @@ public:
 	virtual ~Desc() {
 		cout << "Desc destructor" << endl;
 	}
+	Desc(const Desc& other) : Base(other) {
+		cout << "Desc copy constructor" << endl;
+	}
 	void PrintVirtual() override {
 		cout << "Desc value" << endl;
 	}
