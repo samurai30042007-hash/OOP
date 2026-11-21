@@ -34,4 +34,12 @@ class Base {
 			return type == "Base";
 		}
 		
+
+		void CallVirtual() {
+			PrintVirtual();
+		}
+
+		void CallNonVirtual() {
+			PrintNonVirtual();
+		}
 };

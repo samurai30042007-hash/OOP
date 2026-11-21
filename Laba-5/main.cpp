@@ -132,6 +132,15 @@ int main(){
 
 	cout << "\n" << endl;
 
+	Base* obj = new Desc();
+
+	obj->CallVirtual();
+	obj->CallNonVirtual();
+
+	delete obj;
+
+	cout << "\n" << endl;
+
 	delete desc;
 	delete trueBase;
 	delete base;
