@@ -11,6 +11,7 @@ Base CreateByValue();
 Base* CreateByPointer();
 Base& CreateByReference();
 Base& CreateByReferenceStatic();
+void CheckShared(shared_ptr<Base> ptr);
 
 int main(){
 	Desc* desc = new Desc();
@@ -101,6 +102,15 @@ int main(){
 	ptr2.reset();
 
 	cout << "\n" << endl;
+
+	auto ptr = make_shared<Base>();
+
+	cout << ptr.use_count() << endl;
+	CheckShared(ptr);
+	cout << ptr.use_count() << endl;
+
+	cout << "\n" << endl;
+
 	delete desc;
 	delete trueBase;
 	delete base;
@@ -132,4 +142,7 @@ Base& CreateByReference() {
 Base& CreateByReferenceStatic() {
 	static Base bas;
 	return bas;
+}
+void CheckShared(shared_ptr<Base> ptr) {
+	cout << ptr.use_count() << "\n";
 }
