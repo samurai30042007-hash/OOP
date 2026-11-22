@@ -75,6 +75,7 @@
             MainMenuStrip = menuStrip1;
             Name = "Form1";
             Text = "Form1";
+            FormClosing += Form1_FormClosing;
             Paint += Form1_Paint;
             KeyDown += Form1_KeyDown;
             MouseDown += Form1_MouseDown;

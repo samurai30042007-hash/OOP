@@ -52,5 +52,6 @@ namespace laba_3._1
         {
             return this.MemberwiseClone();
         }
+        public abstract string Serialize();
     }
 }

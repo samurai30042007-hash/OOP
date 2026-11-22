@@ -125,6 +125,16 @@ namespace laba_3._1
             get { return _shapes; }
         }
 
+        public override string Serialize()
+        {
+            string serializedGroup = $"GROUP {_shapes.Count}" + "\r\n";
+            foreach (var shape in _shapes)
+            {
+                serializedGroup += shape.Serialize();
+            }
+            return serializedGroup;
+        } 
+    
         private List<Shape> _shapes;
     }
 }

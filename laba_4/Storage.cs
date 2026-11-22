@@ -156,6 +156,17 @@ namespace laba_3._1
 
             _shapes.RemoveAll(shape => groups.Contains(shape));
         }
+        public string Serialize()
+        {
+            string serializedData = _shapes.Count.ToString() + "\r\n";
+
+            foreach (var shape in _shapes)
+            {
+                serializedData += shape.Serialize();
+            }
+
+            return serializedData;
+        }
         private List<Shape> _shapes;    
     }
 }

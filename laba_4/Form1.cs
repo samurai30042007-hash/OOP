@@ -23,7 +23,7 @@ namespace laba_3._1
             { "RECTANGLE", new FabricRectangle() },
             { "TRIANGLE", new FabricTriangle() }
             });
-            Deserelisator _deserelisator = new Deserelisator(LoadShapesFromFile(), _rigestry1);
+            Deserelisator _deserelisator = new Deserelisator(LoadShapesFromFile() ?? throw new InvalidOperationException("Failed to load shapes from file"), _rigestry1);
             _storage = new(_deserelisator.Deserialize());
             Invalidate();
         }
@@ -151,11 +151,28 @@ namespace laba_3._1
            );
         }
 
-        private string LoadShapesFromFile()
+        private string? LoadShapesFromFile()
         {
-            using (var reader = new StreamReader("shapes.txt"))
+            using OpenFileDialog dialog = new();
+
+            dialog.Filter = "Текстовые файлы (*.txt)|*.txt";
+
+            if (dialog.ShowDialog() == DialogResult.OK)
             {
-                return reader.ReadToEnd();
+                return File.ReadAllText(dialog.FileName);
+            }
+            return null;
+        }
+
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            using OpenFileDialog dialog = new();
+
+            dialog.Filter = "Текстовые файлы (*.txt)|*.txt";
+
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+                 File.WriteAllText(dialog.FileName, _storage.Serialize());
             }
         }
     }
