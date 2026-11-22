@@ -2,7 +2,7 @@ namespace laba_3._1
 {
     public partial class Form1 : Form
     {
-        private Storage _storage = new();
+        private Storage _storage;
         private const int MoveStep = 10;
         private const int ResizeStep = 10;
         RectangleF workArea;
@@ -11,12 +11,21 @@ namespace laba_3._1
         public Form1()
         {
             InitializeComponent();
+
             workArea = new RectangleF(
                0,
                menuStrip1.Bottom,
                ClientSize.Width,
                ClientSize.Height - menuStrip1.Bottom
            );
+            Rigestry _rigestry1 = new(new Dictionary<string, IFabric>{
+            { "CIRCLE", new FabricCircle() },
+            { "RECTANGLE", new FabricRectangle() },
+            { "TRIANGLE", new FabricTriangle() }
+            });
+            Deserelisator _deserelisator = new Deserelisator(LoadShapesFromFile(), _rigestry1);
+            _storage = new(_deserelisator.Deserialize());
+            Invalidate();
         }
 
         private void Form1_MouseDown(object sender, MouseEventArgs e)
@@ -140,6 +149,14 @@ namespace laba_3._1
                ClientSize.Width,
                ClientSize.Height - menuStrip1.Bottom
            );
+        }
+
+        private string LoadShapesFromFile()
+        {
+            using (var reader = new StreamReader("shapes.txt"))
+            {
+                return reader.ReadToEnd();
+            }
         }
     }
 }
