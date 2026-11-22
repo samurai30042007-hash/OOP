@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing.Drawing2D;
 using System.Text;
 
 namespace laba_3._1
@@ -84,8 +85,9 @@ namespace laba_3._1
             if (this.IsSelect)
             {
                 RectangleF bounds = this.Bounds;
-                using (var pen = new Pen(Color.Red, 2))
+                using (var pen = new Pen(Color.Black, 1))
                 {
+                    pen.DashStyle = DashStyle.Dash;
                     graphics.DrawRectangle(pen, bounds.X, bounds.Y, bounds.Width, bounds.Height);
                 }
             }
@@ -106,7 +108,21 @@ namespace laba_3._1
                 shape.ChangeSelect();
             }
         }
-        
+        public override object Clone()
+        {
+            Group cloneGroup = new();
+            foreach (var shape in _shapes)
+            {
+                cloneGroup.AddShape((Shape)shape.Clone());
+            }
+            cloneGroup.ShapeColor = this.ShapeColor;
+            cloneGroup.IsSelect = this.IsSelect;    
+            return cloneGroup;
+        }
+        public List<Shape> Shapes
+        {
+            get { return _shapes; }
+        }
 
         private List<Shape> _shapes;
     }

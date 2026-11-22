@@ -37,7 +37,7 @@ namespace laba_3._1
         {
             try
             {
-                var clone = (Shape)this.MemberwiseClone();
+                var clone = (Shape)this.Clone();
                 clone.Resize(delta);
                 RectangleF futureBounds = clone.Bounds;
                 return workArea.Contains(futureBounds);
@@ -47,8 +47,10 @@ namespace laba_3._1
                 throw;
             }
             
-            
         }
-
+        public virtual object Clone()
+        {
+            return this.MemberwiseClone();
+        }
     }
 }

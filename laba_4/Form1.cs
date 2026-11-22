@@ -2,7 +2,7 @@ namespace laba_3._1
 {
     public partial class Form1 : Form
     {
-        private Storage _storage = new Storage();
+        private Storage _storage = new();
         private const int MoveStep = 10;
         private const int ResizeStep = 10;
         RectangleF workArea;
@@ -83,13 +83,25 @@ namespace laba_3._1
                     break;
                 case Keys.C:
                     {
-                        ColorDialog dialog = new ColorDialog();
+                        ColorDialog dialog = new();
 
                         if (dialog.ShowDialog() == DialogResult.OK)
                         {
                             _storage.ChangeSelectedColor(dialog.Color);
                             Invalidate();
                         }
+                        break;
+                    }
+                case Keys.G:
+                    {
+                        _storage.MakeGroup();
+                        Invalidate();
+                        break;
+                    }
+                case Keys.U:
+                    {
+                        _storage.UnGroupe();
+                        Invalidate();
                         break;
                     }
 
