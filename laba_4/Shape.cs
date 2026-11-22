@@ -9,7 +9,7 @@ namespace laba_3._1
         public bool IsSelect { get; protected set; }
         public abstract RectangleF Bounds { get; }
         protected int PosX;
-        public Color ShapeColor { get; set; } = Color.Black;
+        public virtual Color ShapeColor { get; set; } = Color.Black;
         protected int PosY;
         virtual public void ChangeSelect(bool isSelect)
         {

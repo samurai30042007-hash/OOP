@@ -10,6 +10,17 @@ namespace laba_3._1
         {
             _shapes = new();
         }
+        public override Color ShapeColor
+        {
+            get { return base.ShapeColor; }
+            set
+            {
+                foreach (var shape in _shapes)
+                {
+                    shape.ShapeColor = value;
+                }
+            }
+        }
         public void AddShape(Shape shape)
         {
             _shapes.Add(shape);
@@ -68,10 +79,35 @@ namespace laba_3._1
         {
             foreach (var shape in _shapes)
             {
-                shape.ShapeColor = this.ShapeColor;
                 shape.Draw(graphics);
             }
+            if (this.IsSelect)
+            {
+                RectangleF bounds = this.Bounds;
+                using (var pen = new Pen(Color.Red, 2))
+                {
+                    graphics.DrawRectangle(pen, bounds.X, bounds.Y, bounds.Width, bounds.Height);
+                }
+            }
         }
+        public override void ChangeSelect(bool isSelect)
+        {
+            base.ChangeSelect(isSelect);
+            foreach (var shape in _shapes)
+            {
+                shape.ChangeSelect(isSelect);
+            }
+        }
+        public override void ChangeSelect()
+        {
+            base.ChangeSelect();
+            foreach (var shape in _shapes)
+            {
+                shape.ChangeSelect();
+            }
+        }
+        
+
         private List<Shape> _shapes;
     }
 }

@@ -15,6 +15,7 @@ namespace laba_3._1
         {
             _shapes = new(circles);
         }
+        
         public void AddShape(int choosenShape, RectangleF workArea, int X, int Y)
         {
             Shape? shape = null;
@@ -123,6 +124,28 @@ namespace laba_3._1
                     shape.ShapeColor = color;
                 }
             }
+        }
+
+        public void MakeGroup()
+        {
+            List<Shape> selectedShapes = _shapes.FindAll(shape => shape.IsSelect);
+            if (selectedShapes.Count > 0)
+            {
+                Group group = new Group();
+                foreach (var shape in selectedShapes)
+                {
+                    group.AddShape(shape);
+                }
+                group.ChangeSelect(true);
+                _shapes.RemoveAll(shape => shape.IsSelect);
+                _shapes.Add(group);
+            }
+        }
+
+        public void AddToGroup()
+        {
+            List<Shape> selectedShapes = _shapes.FindAll(shape => shape.IsSelect);
+            ifs
         }
         private List<Shape> _shapes;
     }
