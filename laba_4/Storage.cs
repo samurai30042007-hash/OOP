@@ -4,7 +4,7 @@ using System.Text;
 
 namespace laba_3._1
 {
-    public class Storage
+    public class Storage : Shape
     {
 
         public Storage()
@@ -30,7 +30,7 @@ namespace laba_3._1
                     shape = new Triangle(X, Y, 25);
                     break;
             }
-            if(workArea.Contains(shape!.Bounds))
+            if (workArea.Contains(shape!.Bounds))
                 _shapes.Add(shape);
         }
         public bool SelectShape(int x, int y, bool isPressCtrl)
@@ -77,7 +77,7 @@ namespace laba_3._1
                     canMove = false;
                     break;
                 }
-                
+
             }
             if (canMove)
             {
@@ -97,7 +97,7 @@ namespace laba_3._1
             bool canResize = true;
             foreach (var shape in _shapes)
             {
-                if (shape.IsSelect && (shape.CanResize(delta, workArea) == false))
+                if ( shape.CanResize(delta, workArea) == false)
                 {
                     canResize = false;
                     break;
@@ -124,6 +124,67 @@ namespace laba_3._1
                 }
             }
         }
+
+        public override void Resize(int delta)
+        {
+            foreach (var shape in _shapes)
+            {
+                shape.Resize(delta);
+            }
+        }
+        public override void Move(int dx, int dy)
+        {
+            foreach (var shape in _shapes)
+            {
+                shape.Move(dx, dy);
+            }
+        }
+        public override void Draw(Graphics graphics)
+        {
+            foreach (var shape in _shapes)
+            {
+                shape.Draw(graphics);
+            }
+        }
+        public override bool IsInside(int x, int y)
+        {
+            foreach (var shape in _shapes)
+            {
+                if (shape.IsInside(x, y))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+        public override RectangleF Bounds
+        {
+            get
+            {
+                if (_shapes.Count == 0)
+                {
+                    return RectangleF.Empty;
+                }
+                float minX = float.MaxValue;
+                float minY = float.MaxValue;
+                float maxX = float.MinValue;
+                float maxY = float.MinValue;
+                foreach (var shape in _shapes)
+                {
+                    var bounds = shape.Bounds;
+                    minX = Math.Min(minX, bounds.Left);
+                    minY = Math.Min(minY, bounds.Top);
+                    maxX = Math.Max(maxX, bounds.Right);
+                    maxY = Math.Max(maxY, bounds.Bottom);
+                }
+                return new RectangleF(minX, minY, maxX - minX, maxY - minY);
+            }
+        }
+
+
         private List<Shape> _shapes;
+
+
+
     }
 }
