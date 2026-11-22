@@ -19,6 +19,7 @@ namespace laba_3._1
                 foreach (var shape in _shapes)
                 {
                     shape.ShapeColor = value;
+                    base.ShapeColor = value;
                 }
             }
         }

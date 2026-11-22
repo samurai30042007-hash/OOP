@@ -129,7 +129,7 @@ namespace laba_3._1
         public void MakeGroup()
         {
             List<Shape> selectedShapes = _shapes.FindAll(shape => shape.IsSelect);
-            if (selectedShapes.Count > 0)
+            if (selectedShapes.Count > 1)
             {
                 Group group = new();
                 foreach (var shape in selectedShapes)
@@ -147,11 +147,13 @@ namespace laba_3._1
             List<Group> groups = _shapes.OfType<Group>().Where(g => g.IsSelect).ToList();
             foreach (var group in groups)
             {
+                group.ChangeSelect(false);
                 foreach (var shape in group.Shapes)
                 {
                     _shapes.Add(shape);
                 }
             }
+
             _shapes.RemoveAll(shape => groups.Contains(shape));
         }
         private List<Shape> _shapes;    
