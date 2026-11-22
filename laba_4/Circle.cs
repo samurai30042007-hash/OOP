@@ -76,7 +76,7 @@ namespace laba_3._1
         }
         public override string Serialize()
         {
-            return $"CIRCLE {PosX} {PosY} {Radius} {ShapeColor.ToArgb()}" + "\r\n";
+            return $"CIRCLE {Radius} {PosX} {PosY} {ShapeColor.ToArgb()}" + "\r\n";
         }
 
     }
@@ -144,7 +144,7 @@ namespace laba_3._1
         }
         public override string Serialize()
         {
-            return $"RECTANGLE {PosX} {PosY} {Width} {Height} {ShapeColor.ToArgb()}" + "\r\n";
+            return $"RECTANGLE {Width} {Height} {PosX} {PosY} {ShapeColor.ToArgb()}" + "\r\n";
         }
     }
     public class Triangle : Shape
@@ -225,7 +225,7 @@ namespace laba_3._1
         }
         public override string Serialize()
         {
-            return $"TRIANGLE {PosX} {PosY} {lenght} {ShapeColor.ToArgb()}" + "\r\n";
+            return $"TRIANGLE {lenght} {PosX} {PosY} {ShapeColor.ToArgb()}" + "\r\n";
         }
     }
 }

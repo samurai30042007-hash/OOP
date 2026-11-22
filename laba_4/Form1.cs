@@ -7,7 +7,7 @@ namespace laba_3._1
         private const int ResizeStep = 10;
         RectangleF workArea;
 
-        private int _choosenShape = 0;
+        private string[] _choosenShape = ["CIRCLE", "25", "0", "0"];
         public Form1()
         {
             InitializeComponent();
@@ -23,9 +23,17 @@ namespace laba_3._1
             { "RECTANGLE", new FabricRectangle() },
             { "TRIANGLE", new FabricTriangle() }
             });
-            Deserelisator _deserelisator = new Deserelisator(LoadShapesFromFile() ?? throw new InvalidOperationException("Failed to load shapes from file"), _rigestry1);
-            _storage = new(_deserelisator.Deserialize());
-            Invalidate();
+            string? shapesData = LoadShapesFromFile();
+            if (shapesData is null)
+            {
+                _storage = new Storage(_rigestry1   );
+            }
+            else
+            {
+                Deserelisator _deserelisator = new Deserelisator(shapesData, _rigestry1);
+                _storage = new(_deserelisator.Deserialize(), _rigestry1);
+                Invalidate();
+            }
         }
 
         private void Form1_MouseDown(object sender, MouseEventArgs e)
@@ -35,7 +43,9 @@ namespace laba_3._1
                 bool isCircleFound = _storage.SelectShape(e.X, e.Y, Control.ModifierKeys == Keys.Control);
                 if (!isCircleFound)
                 {
-                    _storage.AddShape(_choosenShape, workArea, e.X, e.Y);
+                    _choosenShape[^2] = e.X.ToString();
+                    _choosenShape[^1] = e.Y.ToString();
+                    _storage.AddShape(_choosenShape, workArea);
                 }
             }
             Invalidate();
@@ -82,13 +92,13 @@ namespace laba_3._1
                     }
                     break;
                 case Keys.NumPad1:
-                    _choosenShape = 0;
+                    _choosenShape = ["CIRCLE", "25", "0", "0"];
                     break;
                 case Keys.NumPad2:
-                    _choosenShape = 1;
+                    _choosenShape = ["RECTANGLE", "25", "50", "0", "0"];
                     break;
                 case Keys.NumPad3:
-                    _choosenShape = 2;
+                    _choosenShape = ["TRIANGLE", "30", "0", "0"];
                     break;
                 case Keys.C:
                     {
@@ -128,17 +138,17 @@ namespace laba_3._1
 
         private void кРУГToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            _choosenShape = 0;
+            _choosenShape = ["CIRCLE", "25", "0", "0"];
         }
 
         private void пРЯМОУГОЛЬНИКToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            _choosenShape = 1;
+            _choosenShape = ["RECTANGLE", "25", "50", "0", "0"];
         }
 
         private void тРЕУГОЛЬНИКToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            _choosenShape = 2;
+            _choosenShape = ["TRIANGLE", "30", "0", "0"];
         }
 
         private void Form1_Resize(object sender, EventArgs e)
@@ -166,13 +176,13 @@ namespace laba_3._1
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
-            using OpenFileDialog dialog = new();
+            using SaveFileDialog dialog = new();
 
             dialog.Filter = "Текстовые файлы (*.txt)|*.txt";
 
             if (dialog.ShowDialog() == DialogResult.OK)
             {
-                 File.WriteAllText(dialog.FileName, _storage.Serialize());
+                File.WriteAllText(dialog.FileName, _storage.Serialize());
             }
         }
     }

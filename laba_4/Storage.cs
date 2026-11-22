@@ -6,32 +6,23 @@ namespace laba_3._1
 {
     public class Storage
     {
-
-        public Storage()
+        Rigestry _rigestry;
+        public Storage(Rigestry rigestry)
         {
+            _rigestry = rigestry;
             _shapes = new();
         }
-        public Storage(List<Shape> circles)
+        public Storage(List<Shape> circles, Rigestry rigestry)
         {
             _shapes = new(circles);
+            _rigestry = rigestry;
         }
         
-        public void AddShape(int choosenShape, RectangleF workArea, int X, int Y)
+        public void AddShape(string[] choosenShapeOptions, RectangleF workArea)
         {
-            Shape? shape = null;
-            switch (choosenShape)
-            {
-                case 0:
-                    shape = new Circle(X, Y, 25);
-                    break;
-                case 1:
-                    shape = new Rectangle(X, Y, 25, 30);
-                    break;
-                case 2:
-                    shape = new Triangle(X, Y, 25);
-                    break;
-            }
-            if(workArea.Contains(shape!.Bounds))
+            Shape? shape = _rigestry.CreateShape(choosenShapeOptions);
+            
+            if(shape is not null && workArea.Contains(shape!.Bounds))
                 _shapes.Add(shape);
         }
         public bool SelectShape(int x, int y, bool isPressCtrl)
